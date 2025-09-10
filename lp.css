@@ -1,5 +1,5 @@
 /* ==================================================================================
-  FILE: lp.css (Versi 4 - Finalisasi Desain & Tipografi)
+  FILE: lp.css (Versi 5 - Finalisasi Desain & Tipografi)
   TUJUAN: Styling untuk landing page sesuai referensi kelasfullstack.id
   IMPLEMENTASI: Unggah konten file ini ke https://admor94.github.io/main/lp.css
   ==================================================================================
@@ -8,7 +8,7 @@
 /* 1. Variabel Global (Font dan Warna sesuai preferensi Anda) */
 :root {
   /* Tipografi */
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   
   /* Palet Warna (oklch) */
   --color-amber-400: oklch(82.8% .189 84.429);
@@ -19,9 +19,12 @@
 
   /* Alokasi Variabel ke Fungsi */
   --primary-color: var(--color-amber-400);
-  --background-color: var(--color-gray-900);
-  --text-color: var(--color-gray-300);
-  --border-color: var(--color-gray-700);
+  --background-color: #111827; /* Fallback untuk oklch */
+  --background-color-ok: var(--color-gray-900);
+  --text-color: #D1D5DB; /* Fallback untuk oklch */
+  --text-color-ok: var(--color-gray-300);
+  --border-color: #374151; /* Fallback untuk oklch */
+  --border-color-ok: var(--color-gray-700);
   --font-family: var(--font-sans);
 }
 
@@ -33,25 +36,30 @@
 
 body {
   background-color: var(--background-color);
+  background-color: var(--background-color-ok);
   font-family: var(--font-family);
   color: var(--text-color);
+  color: var(--text-color-ok);
   line-height: 1.6;
-  font-size: 14px; /* [PERBAIKAN] Ukuran font paragraf dasar */
+  font-size: 14px;
+  font-weight: 500; /* [PERBAIKAN] Font weight dasar lebih ringan */
 }
 
 .container {
-  max-width: 1140px;
+  width: 100%;
+  max-width: 1280px; /* Sesuai referensi */
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
-/* 2. Header dan Navigasi (Disesuaikan dengan referensi) */
+/* 2. Header dan Navigasi */
 .header {
   padding: 16px 0;
   border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color-ok);
   position: sticky;
   top: 0;
-  background-color: rgba(17, 24, 39, 0.8); /* Warna gray-900 dengan transparansi */
+  background-color: rgba(17, 24, 39, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 1000;
@@ -63,11 +71,8 @@ body {
   align-items: center;
 }
 
-.navbar-brand {
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: var(--color-white);
-  text-decoration: none;
+.navbar-brand img {
+  height: 32px; /* Sesuai referensi */
 }
 
 .navbar-collapse {
@@ -79,12 +84,13 @@ body {
 .navbar-nav {
   display: flex;
   list-style: none;
-  gap: 32px; /* Menambah jarak antar menu */
-  margin: 0 auto; /* Memusatkan menu */
+  gap: 32px;
+  margin: 0 auto;
 }
 
 .navbar-nav a {
   color: var(--text-color);
+  color: var(--text-color-ok);
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
@@ -98,11 +104,12 @@ body {
 .navbar-buttons {
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
 .btn {
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: 9999px; /* Tombol rounded penuh */
   text-decoration: none;
   font-weight: 700;
   display: inline-flex;
@@ -112,22 +119,24 @@ body {
   font-size: 14px;
   border: 1px solid transparent;
 }
-
 .btn-primary {
   background-color: var(--primary-color);
   color: #000;
 }
 .btn-primary:hover {
-  filter: brightness(0.9);
+  filter: brightness(0.95);
 }
 .btn-outline {
   background-color: transparent;
   color: var(--color-white);
   border-color: var(--border-color);
+  border-color: var(--border-color-ok);
 }
 .btn-outline:hover {
   background-color: var(--border-color);
+  background-color: var(--border-color-ok);
 }
+.btn svg { width: 16px; height: 16px; }
 
 .navbar-toggler { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
 .navbar-toggler-icon { display: block; width: 24px; height: 2px; background-color: var(--color-white); position: relative; transition: all 0.3s ease; }
@@ -138,31 +147,30 @@ body {
 .navbar-toggler.active .navbar-toggler-icon::before { transform: rotate(45deg); top: 0; }
 .navbar-toggler.active .navbar-toggler-icon::after { transform: rotate(-45deg); top: 0; }
 
-/* 3. Hero Section (Disesuaikan dengan referensi) */
+/* 3. Hero Section */
 .hero-section {
-  padding: 80px 0;
+  padding: 96px 0;
   background-image: url('https://user-images.githubusercontent.com/8364808/204207823-3765a04e-5a02-4c6e-bdce-64f3a9a1476d.png');
   background-size: cover;
   background-position: center;
 }
 .hero-title {
-  font-size: 2.75rem; /* Ukuran font heading utama */
+  font-size: 3rem;
   font-weight: 800; max-width: 800px;
   margin: 0 auto 24px; color: var(--color-white);
   line-height: 1.2;
 }
 .highlight-text { color: var(--primary-color); text-decoration: none; }
 .highlight-text u { text-decoration-color: var(--primary-color); }
-.hero-subtitle { max-width: 700px; margin: 0 auto 16px; font-size: 1rem; }
-.hero-subtitle-secondary { max-width: 700px; margin: 0 auto 32px; font-size: 1rem; }
+.hero-subtitle { max-width: 650px; margin: 0 auto 16px; font-size: 1rem; }
+.hero-subtitle-secondary { max-width: 650px; margin: 0 auto 32px; font-size: 1rem; }
 .hero-cta { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-.btn-lg { padding: 14px 28px; font-size: 1rem; }
-.btn-lg svg { width: 18px; height: 18px; }
+.btn-lg { padding: 12px 24px; font-size: 1rem; }
 
-/* 4. Features Section (Disesuaikan dengan referensi) */
-.features-section { padding: 60px 0; }
-.features-title { text-align: center; margin-bottom: 32px; font-weight: 600; color: #9CA3AF; font-size: 0.9rem; letter-spacing: 0.5px; }
-.features-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; }
+/* 4. Features Section */
+.features-section { padding: 80px 0; }
+.features-title { text-align: center; margin-bottom: 40px; font-weight: 500; color: #9CA3AF; font-size: 0.9rem; letter-spacing: 0.5px; }
+.features-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 48px; }
 .feature-item { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 14px; }
 .feature-icon { color: var(--primary-color); }
 .feature-icon svg { width: 22px; height: 22px; }
@@ -176,14 +184,32 @@ body {
     display: flex; flex-direction: column; position: fixed;
     top: 0; left: 0; width: 100%; height: 100vh;
     background-color: var(--background-color);
-    padding: 100px 30px 30px; align-items: flex-start;
+    background-color: var(--background-color-ok);
+    padding: 80px 24px 32px; align-items: flex-start;
   }
 
-  .navbar-collapse .navbar-nav { flex-direction: column; align-items: flex-start; width: 100%; gap: 25px; list-style: none; }
-  .navbar-collapse .navbar-buttons { display: flex; flex-direction: column; width: 100%; margin-top: auto; gap: 1rem; }
-  .navbar-collapse .navbar-buttons .btn { width: 100%; text-align: center; justify-content: center; }
+  .navbar-collapse .navbar-nav {
+    flex-direction: column; align-items: flex-start;
+    width: 100%; gap: 20px; list-style: none;
+    border-bottom: 1px solid var(--border-color-ok);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+   .navbar-collapse .navbar-nav a {
+    font-size: 1rem;
+  }
+  .navbar-collapse .navbar-buttons {
+    display: flex; flex-direction: column;
+    width: 100%; gap: 1rem;
+  }
+  .navbar-collapse .navbar-buttons .btn {
+    width: 100%; text-align: center;
+    justify-content: center; padding: 12px;
+  }
   
+  .hero-section { padding: 64px 0; }
   .hero-title { font-size: 2rem; }
   .hero-subtitle, .hero-subtitle-secondary { font-size: 0.95rem; }
+  .features-grid { gap: 24px; }
 }
 
