@@ -3,7 +3,7 @@
 /* ============================================= */
 
 /* Import Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
 
 /* Palet Warna Sesuai Referensi Baru */
 :root {
@@ -39,17 +39,17 @@ body {
   color: var(--ek-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  font-size: 16px; /* [REVISI] Mengatur font dasar paragraf */
+  font-size: 16px;
 }
 
 #landingpage-container {
-  padding-top: 65px; /* Jarak untuk navbar fixed */
+  padding-top: 60px; /* Jarak untuk navbar fixed */
   visibility: hidden; 
 }
 
 .container {
-  max-width: 1120px;
-  width: 90%;
+  max-width: 1280px; /* [REVISI 4] Dibuat lebih lebar */
+  width: 92%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -58,12 +58,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px; /* [REVISI] Ukuran tombol diperkecil */
+  padding: 6px 14px; /* [REVISI 2] Ukuran tombol diperkecil */
   border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
   border: 1px solid transparent;
+  font-size: 13px; /* [REVISI 2] Font tombol diperkecil */
 }
 
 .btn:hover {
@@ -72,14 +73,14 @@ body {
 }
 
 /* ============================================= */
-/* HEADER & NAVBAR (REVISI)        */
+/* HEADER & NAVBAR (REVISI TOTAL)  */
 /* ============================================= */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 12px 0; /* [REVISI 1] Mengurangi tinggi navbar */
+  padding: 12px 0; /* [REVISI 1] Menyesuaikan padding */
   z-index: 1000;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   background-color: transparent;
@@ -100,7 +101,7 @@ body {
 }
 
 .navbar-brand img {
-  height: 36px; /* [REVISI 1] Logo sedikit lebih kecil */
+  height: 32px; /* [REVISI 1] Logo diperkecil */
   display: block;
 }
 
@@ -117,15 +118,19 @@ body {
 }
 
 @media (min-width: 1024px) {
+  /* [REVISI 1] Posisi absolut agar bisa ditengahkan */
   .nav-menu-desktop {
     display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
 .nav-link {
   color: var(--ek-text-secondary);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px; /* Ukuran font menu */
   font-weight: 500;
   padding: 8px 0;
   transition: color 0.3s ease;
@@ -138,14 +143,14 @@ body {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px; /* Jarak antar tombol */
 }
 
 .btn-secondary {
   background-color: transparent;
   color: var(--ek-text-primary);
   border-color: var(--ek-border);
-  font-size: 14px;
+  font-size: 13px;
 }
 .btn-secondary:hover {
   background-color: var(--ek-border);
@@ -154,8 +159,8 @@ body {
 .btn-cta {
   background-color: var(--ek-accent);
   color: var(--ek-bg);
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 13px;
 }
 .btn-cta:hover {
   background-color: var(--ek-accent-hover);
@@ -163,9 +168,8 @@ body {
 }
 
 @media (max-width: 1023px) {
-  .nav-actions .btn {
-    display: none;
-  }
+  .nav-menu-desktop { display: none; }
+  .nav-actions .btn { display: none; }
 }
 
 /* Hamburger Menu */
@@ -204,7 +208,7 @@ body {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 65px; 
+  top: 60px; /* Disesuaikan dengan tinggi navbar baru */
   left: 0;
   right: 0;
   bottom: 0;
@@ -231,10 +235,10 @@ body {
 }
 
 /* ============================================= */
-/* HERO SECTION (REVISI)             */
+/* HERO SECTION (REVISI TOTAL)       */
 /* ============================================= */
 .hero-section {
-  padding: 100px 0; 
+  padding: 120px 0; 
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -249,43 +253,43 @@ body {
   background-image: url('https://image.web.id/images/clipboard-image-1750755434.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.08; /* [REVISI 5] Transparansi ditingkatkan */
+  opacity: 0.05; /* [REVISI] Lebih transparan */
   z-index: -1;
 }
 
 .hero-content {
-  max-width: 950px; /* [REVISI 4] Dibuat lebih lebar */
+  max-width: 850px;
   position: relative;
   z-index: 1;
 }
 
 .hero-title {
-  font-size: clamp(2.1rem, 5vw, 3rem); /* [REVISI 3] Ukuran disesuaikan */
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: clamp(2rem, 5vw, 2.75rem); /* [REVISI 3] Ukuran dikecilkan lagi */
+  font-weight: 800; /* Disesuaikan agar lebih mirip referensi */
+  line-height: 1.35;
   margin: 0 0 24px;
   color: var(--ek-text-primary);
 }
 
 .highlight-text-accent {
-  color: var(--ek-accent); /* [REVISI 3] Warna untuk teks highlight */
+  color: var(--ek-accent);
 }
 
 .hero-subtitle {
-  font-size: 16px; /* [REVISI 4] Ukuran font diperbesar */
+  font-size: 16px;
   font-weight: 400;
   color: var(--ek-text-secondary);
   max-width: 680px;
-  margin: 0 auto 16px;
+  margin: 0 auto 12px;
   line-height: 1.7;
 }
 
 .hero-description {
-  font-size: 16px; /* [REVISI 4 & 5] Font diperbesar dan ditambahkan */
+  font-size: 16px;
   font-weight: 400;
   color: var(--ek-text-secondary);
   max-width: 680px;
-  margin: 0 auto 40px;
+  margin: 0 auto 32px;
   line-height: 1.7;
 }
 
@@ -297,28 +301,13 @@ body {
   flex-wrap: wrap;
 }
 
-.btn-cta-hero {
-  background-color: var(--ek-accent);
-  color: var(--ek-bg);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 12px 28px; /* [REVISI 2] Tombol diperkecil */
-}
-.btn-cta-hero:hover {
-  background-color: var(--ek-accent-hover);
-  color: var(--ek-bg);
-}
-
-.btn-secondary-hero {
-  background-color: rgba(255, 255, 255, 0.05);
-  color: var(--ek-text-primary);
-  border-color: var(--ek-border);
+.btn-cta-hero, .btn-secondary-hero {
+  padding: 10px 24px; /* [REVISI 2] Ukuran tombol disesuaikan */
   font-size: 14px;
   font-weight: 500;
-  padding: 12px 28px; /* [REVISI 2] Tombol diperkecil */
 }
-.btn-secondary-hero:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-gray-400);
+
+.btn-cta-hero {
+  font-weight: 700;
 }
 
