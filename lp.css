@@ -5,7 +5,7 @@
 /* Import Font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 
-/* [REVISI] Palet Warna Sesuai Referensi Baru */
+/* Palet Warna Sesuai Referensi Baru */
 :root {
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --color-amber-400: oklch(82.8% .189 84.429);
@@ -39,16 +39,15 @@ body {
   color: var(--ek-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  font-size: 14px; /* [REVISI] Mengatur font dasar paragraf */
 }
 
 #landingpage-container {
-  padding-top: 73px; /* Jarak untuk navbar fixed */
+  padding-top: 65px; /* [REVISI] Mengurangi padding atas */
   visibility: hidden; 
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1120px; /* [REVISI] Sedikit lebih lebar agar teks tidak menumpuk */
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -58,7 +57,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 24px;
+  padding: 8px 16px; /* [REVISI] Ukuran tombol diperkecil */
   border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
@@ -79,7 +78,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 16px 0;
+  padding: 12px 0; /* [REVISI] Mengurangi tinggi navbar */
   z-index: 1000;
   transition: background-color 0.3s ease, border-color 0.3s ease;
   background-color: transparent;
@@ -100,7 +99,7 @@ body {
 }
 
 .navbar-brand img {
-  height: 40px;
+  height: 36px; /* [REVISI] Logo sedikit lebih kecil */
   display: block;
 }
 
@@ -145,7 +144,7 @@ body {
   background-color: transparent;
   color: var(--ek-text-primary);
   border-color: var(--ek-border);
-  font-size: 14px; /* Menyesuaikan ukuran font tombol */
+  font-size: 14px;
 }
 .btn-secondary:hover {
   background-color: var(--ek-border);
@@ -155,7 +154,7 @@ body {
   background-color: var(--ek-accent);
   color: var(--ek-bg);
   font-weight: 700;
-  font-size: 14px; /* Menyesuaikan ukuran font tombol */
+  font-size: 14px;
 }
 .btn-cta:hover {
   background-color: var(--ek-accent-hover);
@@ -204,7 +203,7 @@ body {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 73px; 
+  top: 65px; /* [REVISI] Disesuaikan dengan tinggi navbar baru */
   left: 0;
   right: 0;
   bottom: 0;
@@ -234,7 +233,7 @@ body {
 /* HERO SECTION (REVISI)             */
 /* ============================================= */
 .hero-section {
-  padding: 80px 0;
+  padding: 100px 0; /* Menambah padding atas bawah */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -246,38 +245,47 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop');
+  background-image: url('https://image.web.id/images/clipboard-image-1750755434.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.1;
+  opacity: 0.08; /* Sedikit lebih redup */
   z-index: -1;
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 950px; /* [REVISI] Dibuat lebih lebar */
   position: relative;
   z-index: 1;
 }
 
 .hero-title {
-  font-size: clamp(2.25rem, 5vw, 3.25rem); /* Ukuran sedikit disesuaikan */
-  font-weight: 700; /* [REVISI] Dibuat lebih tipis */
-  line-height: 1.2;
+  font-size: clamp(2.1rem, 5vw, 3rem); /* [REVISI] Ukuran disesuaikan */
+  font-weight: 700;
+  line-height: 1.3; /* Sedikit lebih renggang */
   margin: 0 0 24px;
   color: var(--ek-text-primary);
 }
 
-.highlight-text {
+.highlight-text-accent {
   color: var(--ek-accent);
 }
 
 .hero-subtitle {
-  font-size: 14px; /* [REVISI] Sesuai permintaan */
-  font-weight: 400; /* [REVISI] Font weight normal */
+  font-size: 16px; /* [REVISI] Sesuai permintaan */
+  font-weight: 400;
   color: var(--ek-text-secondary);
-  max-width: 650px;
+  max-width: 680px;
+  margin: 0 auto 16px; /* Mengurangi margin bawah */
+  line-height: 1.7;
+}
+
+.hero-description {
+  font-size: 16px; /* [BARU] Ukuran disamakan dengan subtitle */
+  font-weight: 400;
+  color: var(--ek-text-secondary);
+  max-width: 680px;
   margin: 0 auto 40px;
-  line-height: 1.7; /* [REVISI] Menambah spasi antar baris */
+  line-height: 1.7;
 }
 
 .hero-cta-group {
@@ -291,7 +299,7 @@ body {
 .btn-cta-hero {
   background-color: var(--ek-accent);
   color: var(--ek-bg);
-  font-size: 14px; /* [REVISI] Ukuran font disesuaikan */
+  font-size: 14px;
   font-weight: 700;
   padding: 12px 28px;
 }
@@ -304,7 +312,7 @@ body {
   background-color: rgba(255, 255, 255, 0.05);
   color: var(--ek-text-primary);
   border-color: var(--ek-border);
-  font-size: 14px; /* [REVISI] Ukuran font disesuaikan */
+  font-size: 14px;
   font-weight: 500;
   padding: 12px 28px;
 }
