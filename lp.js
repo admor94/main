@@ -1,5 +1,5 @@
 /* ==================================================================================
-  FILE: lp.js
+  FILE: lp.js (Versi 2 - Perbaikan Logika Toggle)
   TUJUAN: Fungsionalitas untuk landing page, seperti menu mobile.
   IMPLEMENTASI: Unggah konten file ini ke https://admor94.github.io/main/lp.js
   ==================================================================================
@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const body = document.body;
 
   if (navbarToggler && navbarCollapse) {
-    navbarToggler.addEventListener('click', function() {
+    navbarToggler.addEventListener('click', function(event) {
+      // Mencegah event klik menyebar ke elemen lain
+      event.stopPropagation();
+      
       // Toggle class 'active' pada tombol dan menu
       navbarToggler.classList.toggle('active');
       navbarCollapse.classList.toggle('active');
