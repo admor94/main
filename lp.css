@@ -39,6 +39,7 @@ body {
   color: var(--ek-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  font-size: 14px; /* [REVISI] Mengatur font dasar paragraf */
 }
 
 #landingpage-container {
@@ -144,6 +145,7 @@ body {
   background-color: transparent;
   color: var(--ek-text-primary);
   border-color: var(--ek-border);
+  font-size: 14px; /* Menyesuaikan ukuran font tombol */
 }
 .btn-secondary:hover {
   background-color: var(--ek-border);
@@ -153,6 +155,7 @@ body {
   background-color: var(--ek-accent);
   color: var(--ek-bg);
   font-weight: 700;
+  font-size: 14px; /* Menyesuaikan ukuran font tombol */
 }
 .btn-cta:hover {
   background-color: var(--ek-accent-hover);
@@ -257,18 +260,24 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 3.75rem);
-  font-weight: 900;
+  font-size: clamp(2.25rem, 5vw, 3.25rem); /* Ukuran sedikit disesuaikan */
+  font-weight: 700; /* [REVISI] Dibuat lebih tipis */
   line-height: 1.2;
   margin: 0 0 24px;
   color: var(--ek-text-primary);
 }
 
+.highlight-text {
+  color: var(--ek-accent);
+}
+
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: 14px; /* [REVISI] Sesuai permintaan */
+  font-weight: 400; /* [REVISI] Font weight normal */
   color: var(--ek-text-secondary);
   max-width: 650px;
   margin: 0 auto 40px;
+  line-height: 1.7; /* [REVISI] Menambah spasi antar baris */
 }
 
 .hero-cta-group {
@@ -282,9 +291,9 @@ body {
 .btn-cta-hero {
   background-color: var(--ek-accent);
   color: var(--ek-bg);
-  font-size: 16px;
+  font-size: 14px; /* [REVISI] Ukuran font disesuaikan */
   font-weight: 700;
-  padding: 14px 32px;
+  padding: 12px 28px;
 }
 .btn-cta-hero:hover {
   background-color: var(--ek-accent-hover);
@@ -292,14 +301,15 @@ body {
 }
 
 .btn-secondary-hero {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.05);
   color: var(--ek-text-primary);
   border-color: var(--ek-border);
-  font-size: 16px;
+  font-size: 14px; /* [REVISI] Ukuran font disesuaikan */
   font-weight: 500;
-  padding: 14px 32px;
+  padding: 12px 28px;
 }
 .btn-secondary-hero:hover {
-  background-color: var(--ek-border);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-gray-400);
 }
 
