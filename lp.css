@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800;900&family=Forum&family=Oxanium:wght@500;600&family=Poiret+One&family=Quicksand:wght@400;500;600&display=swap');
+
+body.landing-page-active > *:not(#landingpage-container):not(link):not(script) {
+  display: none !important;
+}
+
 :root {
   --font-title: 'Exo 2', sans-serif;
   --font-body: 'Quicksand', sans-serif;
