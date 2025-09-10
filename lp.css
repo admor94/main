@@ -25,14 +25,18 @@
   --ek-accent-hover: oklch(77.3% .219 149.579); /* Green-500 lebih terang */
 }
 
-/* Sembunyikan elemen bawaan template Blogger */
-#header, #navfloat, #chat, #footer, #main {
+/* [REVISI KUNCI] 
+  Sembunyikan semua elemen di body KECUALI #landingpage-container
+  ketika body memiliki class .landing-page-active.
+  Class ini akan ditambahkan oleh JavaScript.
+*/
+body.landing-page-active > *:not(#landingpage-container):not(link):not(script) {
   display: none !important;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--ek-bg);
+  background-color: var(--ek-bg) !important; /* Tambah !important untuk memaksa override */
   color: var(--ek-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
@@ -40,6 +44,7 @@ body {
 
 #landingpage-container {
   padding-top: 80px; /* Jarak untuk navbar fixed */
+  visibility: hidden; /* Awalnya disembunyikan, akan ditampilkan oleh JS */
 }
 
 .container {
@@ -73,6 +78,7 @@ body {
   padding: 16px 0;
   z-index: 1000;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: transparent;
 }
 
 .navbar.scrolled {
@@ -146,7 +152,7 @@ body {
 
 /* Hamburger Menu */
 .hamburger {
-  display: flex; /* Selalu tampilkan, tapi atur visibilitas via media query */
+  display: flex; 
   flex-direction: column;
   justify-content: space-around;
   width: 24px;
@@ -168,6 +174,21 @@ body {
   transform-origin: 1px;
 }
 
+/* Hamburger animation */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+
 @media (min-width: 1024px) {
   .hamburger {
     display: none; /* Sembunyikan di desktop */
@@ -183,6 +204,11 @@ body {
   right: 0;
   background: var(--ek-bg);
   padding: 16px 5%; /* 5% sama dengan margin container */
+  border-top: 1px solid var(--color-gray-500);
+}
+
+.mobile-menu.open {
+  display: block;
 }
 
 .mobile-menu ul {
