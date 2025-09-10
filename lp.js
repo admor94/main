@@ -1,13 +1,16 @@
 /*
   ===================================================================
-  KODE JAVASCRIPT UNTUK HALAMAN STATIS BLOGGER
-  Tempel kode ini di dalam tag <script>...</script> setelah CSS.
+  KERANGKA JAVASCRIPT - Simpan file ini sebagai lp.js dan unggah ke GitHub.
   ===================================================================
 */
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Fungsionalitas untuk Navbar saat scroll
-    const navbar = document.querySelector('#landingpage-edukrein .navbar-landing');
+    // Pastikan semua kode berjalan di dalam wrapper landing page
+    const landingPageContainer = document.getElementById('landingpage-edukrein');
+    if (!landingPageContainer) return;
+
+    // --- Fungsionalitas Navbar saat di-scroll ---
+    const navbar = landingPageContainer.querySelector('.navbar-landing');
     if (navbar) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
@@ -18,18 +21,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Fungsionalitas untuk Accordion FAQ
-    const landingPageWrapper = document.querySelector('#landingpage-edukrein .lp-digital-product');
-    if (landingPageWrapper) {
-        const faqItems = landingPageWrapper.querySelectorAll('.faq-item');
-
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            
+    // --- Fungsionalitas untuk Accordion FAQ ---
+    const faqItems = landingPageContainer.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        if (question) {
             question.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
 
-                // Tutup semua item FAQ lainnya
+                // Tutup semua item FAQ lain
                 faqItems.forEach(otherItem => {
                     otherItem.classList.remove('active');
                 });
@@ -39,13 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.classList.add('active');
                 }
             });
-        });
-    }
-    
-    // Menampilkan halaman setelah semua siap untuk menghindari FOUC (Flash of Unstyled Content)
-    const landingPageContainer = document.getElementById('landingpage-edukrein');
-    if (landingPageContainer) {
-        landingPageContainer.style.visibility = 'visible';
-    }
+        }
+    });
+
+    // Kode ini tidak lagi menyembunyikan/menampilkan body,
+    // karena masalah white blank lebih aman diatasi dengan CSS.
+
 });
 
