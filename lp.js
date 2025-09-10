@@ -4,15 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // --- [REVISI KUNCI] Pindahkan kontainer dan aktifkan mode landing page ---
   if (landingContainer) {
-    // Pindahkan kontainer ke body agar tidak terpengaruh CSS template
     document.body.appendChild(landingContainer);
-    // Tambahkan class ke body untuk mengaktifkan CSS khusus landing page
     document.body.classList.add('landing-page-active');
-    // Tampilkan kontainer setelah dipindahkan
     landingContainer.style.visibility = 'visible';
   } else {
     console.error('Elemen #landingpage-container tidak ditemukan!');
-    return; // Hentikan eksekusi jika kontainer utama tidak ada
+    return; 
   }
 
   // --- Fungsi untuk Navbar Scroll ---
@@ -33,27 +30,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (hamburgerBtn && mobileMenu) {
     hamburgerBtn.addEventListener('click', () => {
-      hamburgerBtn.classList.toggle('open');
+      const isOpened = hamburgerBtn.classList.toggle('open');
       mobileMenu.classList.toggle('open');
       
-      // Toggle display style (lebih baik menggunakan class)
-      if (mobileMenu.classList.contains('open')) {
+      if (isOpened) {
         mobileMenu.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Mencegah scroll body saat menu terbuka
       } else {
         mobileMenu.style.display = 'none';
+        document.body.style.overflow = '';
       }
     });
   }
 
-  // --- Fungsi untuk Smooth Scrolling ---
-  const navLinks = document.querySelectorAll('.nav-link');
+  // --- Fungsi untuk Smooth Scrolling & Menutup Menu Mobile ---
+  const allLinks = document.querySelectorAll('a[href^="#"]');
 
-  navLinks.forEach(link => {
+  allLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
       
-      // Cek jika link adalah anchor link
-      if (targetId && targetId.startsWith('#')) {
+      if (targetId && targetId.length > 1) { // Pastikan bukan hanya '#'
         e.preventDefault();
         const targetElement = document.querySelector(targetId);
 
@@ -69,8 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
          hamburgerBtn.classList.remove('open');
          mobileMenu.classList.remove('open');
          mobileMenu.style.display = 'none';
+         document.body.style.overflow = '';
       }
     });
   });
 
 });
+
