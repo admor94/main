@@ -5,30 +5,29 @@
 /* Import Font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 
-/* Palet Warna Sesuai Preferensi Anda */
+/* [REVISI] Palet Warna Sesuai Referensi Baru */
 :root {
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --color-red-400: oklch(70.4% .191 22.216);
-  --color-green-500: oklch(72.3% .219 149.579);
-  --color-blue-100: oklch(93.2% .032 255.585);
+  --color-amber-400: oklch(82.8% .189 84.429);
+  --color-gray-200: oklch(92.8% .006 264.531);
   --color-gray-400: oklch(70.7% .022 261.325);
-  --color-gray-500: oklch(55.1% .027 264.364);
+  --color-gray-800: oklch(37.3% .034 259.733);
   --color-gray-900: oklch(21% .034 264.665);
-  --color-black: #000;
+  --color-black: #121212;
   --color-white: #fff;
   
   /* Variabel Semantik */
-  --ek-bg: var(--color-gray-900);
-  --ek-text-primary: var(--color-white);
+  --ek-bg: var(--color-black);
+  --ek-text-primary: var(--color-gray-200);
   --ek-text-secondary: var(--color-gray-400);
-  --ek-accent: var(--color-green-500);
-  --ek-accent-hover: oklch(77.3% .219 149.579); /* Green-500 lebih terang */
+  --ek-accent: var(--color-amber-400);
+  --ek-accent-hover: oklch(85% .189 84.429); /* Amber-400 lebih terang */
+  --ek-border: var(--color-gray-800);
 }
 
 /* [REVISI KUNCI] 
   Sembunyikan semua elemen di body KECUALI #landingpage-container
   ketika body memiliki class .landing-page-active.
-  Class ini akan ditambahkan oleh JavaScript.
 */
 body.landing-page-active > *:not(#landingpage-container):not(link):not(script) {
   display: none !important;
@@ -36,15 +35,15 @@ body.landing-page-active > *:not(#landingpage-container):not(link):not(script) {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--ek-bg) !important; /* Tambah !important untuk memaksa override */
+  background-color: var(--ek-bg) !important;
   color: var(--ek-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 #landingpage-container {
-  padding-top: 80px; /* Jarak untuk navbar fixed */
-  visibility: hidden; /* Awalnya disembunyikan, akan ditampilkan oleh JS */
+  padding-top: 73px; /* Jarak untuk navbar fixed */
+  visibility: hidden; 
 }
 
 .container {
@@ -55,20 +54,24 @@ body {
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 24px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
 .btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 /* ============================================= */
-/* HEADER & NAVBAR                 */
+/* HEADER & NAVBAR (REVISI)        */
 /* ============================================= */
 .navbar {
   position: fixed;
@@ -77,15 +80,16 @@ body {
   width: 100%;
   padding: 16px 0;
   z-index: 1000;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
   background-color: transparent;
+  border-bottom: 1px solid transparent;
 }
 
 .navbar.scrolled {
   background-color: rgba(18, 18, 18, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom-color: var(--ek-border);
 }
 
 .navbar .container {
@@ -100,7 +104,11 @@ body {
 }
 
 .nav-menu-desktop {
-  display: none; /* Sembunyikan di mobile */
+  display: none; 
+}
+
+.nav-menu-desktop ul {
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -109,7 +117,7 @@ body {
 
 @media (min-width: 1024px) {
   .nav-menu-desktop {
-    display: flex; /* Tampilkan di desktop */
+    display: block;
   }
 }
 
@@ -132,21 +140,28 @@ body {
   gap: 16px;
 }
 
+.btn-secondary {
+  background-color: transparent;
+  color: var(--ek-text-primary);
+  border-color: var(--ek-border);
+}
+.btn-secondary:hover {
+  background-color: var(--ek-border);
+}
+
 .btn-cta {
-  display: none; /* Sembunyikan di mobile */
   background-color: var(--ek-accent);
   color: var(--ek-bg);
   font-weight: 700;
 }
-
 .btn-cta:hover {
   background-color: var(--ek-accent-hover);
   color: var(--ek-bg);
 }
 
-@media (min-width: 1024px) {
-  .btn-cta {
-    display: inline-block; /* Tampilkan di desktop */
+@media (max-width: 1023px) {
+  .nav-actions .btn {
+    display: none;
   }
 }
 
@@ -174,97 +189,117 @@ body {
   transform-origin: 1px;
 }
 
-/* Hamburger animation */
-.hamburger.open span:nth-child(1) {
-  transform: rotate(45deg);
-}
-
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-.hamburger.open span:nth-child(3) {
-  transform: rotate(-45deg);
-}
-
+.hamburger.open span:nth-child(1) { transform: rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(20px); }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg); }
 
 @media (min-width: 1024px) {
-  .hamburger {
-    display: none; /* Sembunyikan di desktop */
-  }
+  .hamburger { display: none; }
 }
 
 /* Mobile Menu */
 .mobile-menu {
   display: none;
-  position: absolute;
-  top: 72px; /* Tinggi navbar */
+  position: fixed;
+  top: 73px; 
   left: 0;
   right: 0;
+  bottom: 0;
   background: var(--ek-bg);
-  padding: 16px 5%; /* 5% sama dengan margin container */
-  border-top: 1px solid var(--color-gray-500);
+  padding: 16px 5%;
+  overflow-y: auto;
 }
 
-.mobile-menu.open {
-  display: block;
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; padding: 0; margin: 0; }
+.mobile-menu ul li a { display: block; padding: 12px 0; font-size: 16px; text-decoration: none; }
+.mobile-menu-actions {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ek-border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-
-.mobile-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.mobile-menu ul li a {
-  display: block;
-  padding: 12px 0;
-  font-size: 16px;
-  color: var(--ek-text-primary);
-  text-decoration: none;
+.mobile-menu-actions .btn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
 }
 
 /* ============================================= */
-/* HERO SECTION                  */
+/* HERO SECTION (REVISI)             */
 /* ============================================= */
 .hero-section {
   padding: 80px 0;
   text-align: center;
-  background: radial-gradient(circle, oklch(30% .034 264.665) 0%, var(--ek-bg) 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  z-index: -1;
 }
 
 .hero-content {
-  max-width: 750px;
+  max-width: 800px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem); /* Ukuran font responsif */
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
   font-weight: 900;
   line-height: 1.2;
-  margin: 0 0 16px;
-}
-
-.highlight-text {
-  color: var(--ek-accent);
+  margin: 0 0 24px;
+  color: var(--ek-text-primary);
 }
 
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--ek-text-secondary);
-  max-width: 600px;
-  margin: 0 auto 32px;
+  max-width: 650px;
+  margin: 0 auto 40px;
+}
+
+.hero-cta-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .btn-cta-hero {
   background-color: var(--ek-accent);
   color: var(--ek-bg);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   padding: 14px 32px;
 }
-
 .btn-cta-hero:hover {
   background-color: var(--ek-accent-hover);
   color: var(--ek-bg);
 }
+
+.btn-secondary-hero {
+  background-color: transparent;
+  color: var(--ek-text-primary);
+  border-color: var(--ek-border);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 32px;
+}
+.btn-secondary-hero:hover {
+  background-color: var(--ek-border);
+}
+
