@@ -1,7 +1,259 @@
-  #header,
-  #navfloat,
-  #chat,
-  #main,
-  #footer {
-    display: none !important;
+/* ==================================================================================
+  FILE: lp.css
+  TUJUAN: Styling untuk landing page.
+  IMPLEMENTASI: Unggah konten file ini ke https://admor94.github.io/main/lp.css
+  ==================================================================================
+*/
+
+/* 1. Reset dan Variabel Global */
+:root {
+  --primary-color: #FACC15; /* Kuning */
+  --secondary-color: #FFFFFF;
+  --background-color: #111827; /* Hitam keabuan */
+  --text-color: #D1D5DB; /* Abu-abu terang */
+  --border-color: #374151;
+  --font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 2. Header dan Navigasi */
+.header {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+  z-index: 100;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.navbar-nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav a:hover {
+  color: var(--primary-color);
+}
+
+.navbar-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+.btn-primary:hover {
+  background-color: #eab308; /* Kuning lebih gelap */
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--border-color);
+}
+
+.navbar-toggler {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--secondary-color);
+  position: relative;
+}
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: var(--secondary-color);
+  left: 0;
+}
+.navbar-toggler-icon::before { top: -7px; }
+.navbar-toggler-icon::after { top: 7px; }
+
+/* 3. Hero Section */
+.hero-section {
+  padding: 80px 0;
+  background-image: url('https://user-images.githubusercontent.com/8364808/204207823-3765a04e-5a02-4c6e-bdce-64f3a9a1476d.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  color: var(--secondary-color);
+}
+
+.highlight-text {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+.highlight-text u { text-decoration-color: var(--primary-color); }
+
+
+.hero-subtitle, .hero-subtitle-secondary {
+  max-width: 700px;
+  margin: 0 auto 15px;
+  font-size: 1.1rem;
+}
+.hero-subtitle-secondary {
+  margin-bottom: 40px;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-lg {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+}
+
+/* 4. Features Section */
+.features-section {
+  padding: 60px 0;
+}
+
+.features-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+  color: #9CA3AF;
+}
+
+.features-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 600;
+}
+
+.feature-icon {
+  color: var(--primary-color);
+}
+
+/* 5. Responsif (Mobile) */
+@media (max-width: 992px) {
+  .navbar-nav, .navbar-buttons {
+    display: none;
   }
+  
+  .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-collapse {
+    display: none; /* Sembunyikan secara default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .navbar-collapse.active {
+    display: block; /* Tampilkan saat aktif */
+  }
+
+  .navbar-collapse .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .navbar-collapse .navbar-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-collapse .navbar-buttons .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+  }
+}
