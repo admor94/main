@@ -2,26 +2,34 @@
 /* PENGATURAN DASAR                */
 /* ============================================= */
 
-/* Import Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap');
+/* [REVISI] Import Font Baru */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800;900&family=Forum&family=Oxanium:wght@500;600&family=Poiret+One&family=Quicksand:wght@400;500;600&display=swap');
 
-/* Palet Warna Sesuai Referensi Baru */
+
+/* [REVISI] Variabel Font dan Warna */
 :root {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --color-amber-400: #facc15; /* Warna kuning dari referensi */
+  /* Font Family Variables */
+  --font-title: 'Exo 2', sans-serif;
+  --font-subtitle: 'Oxanium', sans-serif;
+  --font-body: 'Quicksand', sans-serif;
+  --font-label: 'Poiret One', sans-serif;
+  --font-other: 'Forum', serif;
+
+  /* Color Palette */
+  --color-amber-400: #facc15;
   --color-gray-200: #e5e7eb;
   --color-gray-400: #9ca3af;
   --color-gray-800: #374151;
   --color-gray-900: #1f2937;
-  --color-black: #111827; /* Background lebih gelap seperti referensi */
+  --color-black: #111827;
   --color-white: #fff;
   
-  /* Variabel Semantik */
+  /* Semantic Variables */
   --ek-bg: var(--color-black);
   --ek-text-primary: var(--color-gray-200);
   --ek-text-secondary: var(--color-gray-400);
   --ek-accent: var(--color-amber-400);
-  --ek-accent-hover: #fde047; /* Sedikit lebih cerah saat hover */
+  --ek-accent-hover: #fde047;
   --ek-border: var(--color-gray-800);
 }
 
@@ -31,16 +39,16 @@ body.landing-page-active > *:not(#landingpage-container):not(link):not(script) {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body); /* [REVISI] Font body utama: Quicksand */
   background-color: var(--ek-bg) !important;
   color: var(--ek-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
-  font-size: 16px; /* [REVISI] Ukuran font paragraf dasar */
+  font-size: 16px;
 }
 
 #landingpage-container {
-  padding-top: 64px; /* Jarak untuk navbar fixed (tinggi navbar) */
+  padding-top: 64px;
   visibility: hidden; 
 }
 
@@ -56,14 +64,14 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 16px; /* [REVISI 2] Padding horizontal */
-  height: 36px; /* [REVISI 2] Tinggi tombol tetap */
+  padding: 0 16px;
+  height: 36px;
   border-radius: 9999px;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
   border: 1px solid transparent;
-  font-size: 14px; /* [REVISI 2] Font tombol disesuaikan */
+  font-size: 14px;
   white-space: nowrap;
 }
 
@@ -73,7 +81,7 @@ body {
 }
 
 /* ============================================= */
-/* HEADER & NAVBAR (REVISI TOTAL)  */
+/* HEADER & NAVBAR                 */
 /* ============================================= */
 .navbar {
   position: fixed;
@@ -84,7 +92,7 @@ body {
   transition: background-color 0.3s ease, border-color 0.3s ease;
   background-color: transparent;
   border-bottom: 1px solid transparent;
-  height: 64px; /* [REVISI 1] Tinggi navbar tetap */
+  height: 64px;
   display: flex;
   align-items: center;
 }
@@ -129,10 +137,11 @@ body {
 }
 
 .nav-link {
+  font-family: var(--font-other); /* [REVISI] Font menu: Forum */
   color: var(--ek-text-secondary);
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px; /* [REVISI] Font menu diperbesar sedikit */
+  font-weight: 400;
   transition: color 0.3s ease;
 }
 
@@ -147,6 +156,7 @@ body {
 }
 
 .btn-secondary {
+  font-family: var(--font-body); /* [REVISI] Font button: Quicksand */
   background-color: transparent;
   color: var(--ek-text-primary);
   border-color: var(--ek-border);
@@ -157,6 +167,7 @@ body {
 }
 
 .btn-cta {
+  font-family: var(--font-body); /* [REVISI] Font button: Quicksand */
   background-color: var(--ek-accent);
   color: var(--ek-bg);
   font-weight: 700;
@@ -181,16 +192,16 @@ body {
 .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--ek-bg); padding: 16px 5%; overflow-y: auto; }
 .mobile-menu.open { display: block; }
 .mobile-menu ul { list-style: none; padding: 0; margin: 0; }
-.mobile-menu ul li a { display: block; padding: 12px 0; font-size: 16px; }
+.mobile-menu ul li a { display: block; padding: 12px 0; font-size: 16px; font-family: var(--font-other); }
 .mobile-menu-actions { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--ek-border); display: flex; flex-direction: column; gap: 16px; }
 .mobile-menu-actions .btn { width: 100%; justify-content: center; }
 
 /* ============================================= */
-/* HERO SECTION (REVISI TOTAL)       */
+/* HERO SECTION                  */
 /* ============================================= */
 .hero-section {
-  margin-top: -64px; /* [REVISI 4] Tarik ke atas menutupi navbar */
-  padding: 200px 0 100px 0; /* [REVISI 4] Spasi atas-bawah seperti referensi */
+  margin-top: -64px;
+  padding: 200px 0 100px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -205,7 +216,7 @@ body {
   background-image: url('https://image.web.id/images/clipboard-image-1750755434.png');
   background-size: cover;
   background-position: center;
-  opacity: 0.15; /* [REVISI] Opacity lebih terang */
+  opacity: -50;
   z-index: -1;
 }
 
@@ -224,12 +235,12 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(2rem, 5vw, 2.5rem); /* [REVISI 3] Ukuran font judul diperkecil */
-  font-weight: 900; /* [REVISI 3] Font weight lebih tebal (black) */
-  line-height: 1.3;
+  font-family: var(--font-title); /* [REVISI] Font: Exo 2 */
+  font-size: clamp(2.2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.35;
   margin: 0 auto 16px;
   color: var(--ek-text-primary);
-  max-width: 700px; /* [REVISI 3] Batasi lebar agar wrapping mirip */
 }
 
 .highlight-text-accent {
@@ -238,10 +249,11 @@ body {
 
 .hero-subtitle,
 .hero-description {
+  font-family: var(--font-body); /* [REVISI] Font: Quicksand */
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--ek-text-secondary);
-  max-width: 650px;
+  max-width: 680px;
   margin: 0 auto 12px;
   line-height: 1.7;
 }
@@ -259,10 +271,11 @@ body {
 }
 
 .btn-cta-hero, .btn-secondary-hero {
-  padding: 0 24px; /* [REVISI 2] Padding hero button */
+  padding: 0 24px;
   height: 40px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  font-family: var(--font-body); /* [REVISI] Font button: Quicksand */
 }
 
 .btn-cta-hero {
@@ -270,11 +283,20 @@ body {
 }
 
 .btn-secondary-hero {
-  background-color: transparent; /* [REVISI] Tombol sekunder transparan */
+  background-color: transparent;
   border: 1px solid var(--ek-border);
 }
 .btn-secondary-hero:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: var(--color-gray-400);
+}
+
+.hero-sub-cta {
+  font-family: var(--font-subtitle); /* [REVISI] Font sub-judul: Oxanium */
+  font-weight: 600;
+  color: var(--ek-text-secondary);
+  margin-top: 60px; /* Jarak dari tombol */
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
