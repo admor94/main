@@ -5,7 +5,6 @@
 */
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Pastikan semua kode berjalan di dalam wrapper landing page
     const landingPageContainer = document.getElementById('landingpage-edukrein');
     if (!landingPageContainer) return;
 
@@ -43,7 +42,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Kode ini tidak lagi menyembunyikan/menampilkan body,
-    // karena masalah white blank lebih aman diatasi dengan CSS.
-
 });
+
