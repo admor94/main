@@ -1,5 +1,5 @@
 /* ==================================================================================
-  FILE: lp.css (Versi 2 - Perbaikan Tampilan Mobile)
+  FILE: lp.css (Versi 3 - Perbaikan Layout Navigasi & Ukuran Font)
   TUJUAN: Styling untuk landing page.
   IMPLEMENTASI: Unggah konten file ini ke https://admor94.github.io/main/lp.css
   ==================================================================================
@@ -21,11 +21,13 @@
   box-sizing: border-box;
 }
 
+/* [PERBAIKAN] Mengatur ukuran font dasar */
 body {
   background-color: var(--background-color);
   font-family: var(--font-family);
   color: var(--text-color);
   line-height: 1.6;
+  font-size: 14px; 
 }
 
 .container {
@@ -41,7 +43,7 @@ body {
   position: sticky;
   top: 0;
   background-color: var(--background-color);
-  z-index: 1000; /* Menaikkan z-index header */
+  z-index: 1000;
 }
 
 .navbar {
@@ -52,7 +54,7 @@ body {
 
 .navbar-brand {
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1.25rem; /* Menyesuaikan ukuran font */
   color: var(--secondary-color);
   text-decoration: none;
 }
@@ -80,7 +82,7 @@ body {
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 8px 18px; /* Menyesuaikan padding */
   border-radius: 8px;
   text-decoration: none;
   font-weight: 700;
@@ -88,6 +90,7 @@ body {
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
+  font-size: 14px;
 }
 
 .btn-primary {
@@ -111,7 +114,7 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001; /* Z-index lebih tinggi dari menu */
+  z-index: 1001;
 }
 .navbar-toggler-icon {
   display: block; width: 24px; height: 2px;
@@ -132,62 +135,53 @@ body {
 
 /* 3. Hero Section */
 .hero-section {
-  padding: 80px 0;
+  padding: 60px 0; /* Mengurangi padding */
   background-image: url('https://user-images.githubusercontent.com/8364808/204207823-3765a04e-5a02-4c6e-bdce-64f3a9a1476d.png');
   background-size: cover;
   background-position: center;
 }
 .hero-title {
-  font-size: 3rem; font-weight: 800; max-width: 800px;
+  font-size: 2.5rem; /* Menyesuaikan ukuran font */
+  font-weight: 800; max-width: 800px;
   margin: 0 auto 20px; color: var(--secondary-color);
 }
 .highlight-text { color: var(--primary-color); text-decoration: none; }
 .highlight-text u { text-decoration-color: var(--primary-color); }
-.hero-subtitle, .hero-subtitle-secondary { max-width: 700px; margin: 0 auto 15px; font-size: 1.1rem; }
-.hero-subtitle-secondary { margin-bottom: 40px; }
+.hero-subtitle, .hero-subtitle-secondary { max-width: 700px; margin: 0 auto 15px; font-size: 1rem; } /* Menyesuaikan ukuran font */
+.hero-subtitle-secondary { margin-bottom: 30px; }
 .hero-cta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.btn-lg { padding: 15px 30px; font-size: 1.1rem; }
+.btn-lg { padding: 12px 24px; font-size: 1rem; } /* Menyesuaikan ukuran font */
 
 /* 4. Features Section */
-.features-section { padding: 60px 0; }
-.features-title { text-align: center; margin-bottom: 40px; font-weight: 600; color: #9CA3AF; }
-.features-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 40px; }
-.feature-item { display: flex; align-items: center; gap: 15px; font-weight: 600; }
+.features-section { padding: 50px 0; }
+.features-title { text-align: center; margin-bottom: 30px; font-weight: 600; color: #9CA3AF; font-size: 1rem; }
+.features-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; }
+.feature-item { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14px; }
 .feature-icon { color: var(--primary-color); }
+.feature-icon svg { width: 20px; height: 20px; }
 
-/* 5. Responsif (Mobile) - DIPERBARUI */
+/* 5. Responsif (Mobile) */
 @media (max-width: 992px) {
-  .navbar-nav, .navbar-buttons {
-    display: none;
+  .navbar-collapse {
+    display: none; /* Sembunyikan di desktop */
   }
-  
+
   .navbar-toggler {
     display: block;
   }
   
-  .navbar-collapse {
+  /* [PERBAIKAN] Menu mobile akan menjadi flexbox saat aktif */
+  .navbar-collapse.active {
+    display: flex; 
+    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
     background-color: var(--background-color);
-    
-    display: flex;
-    flex-direction: column;
-    padding: 100px 30px 30px 30px; /* Atur padding */
-    
-    /* Sembunyikan secara default */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-  }
-  
-  .navbar-collapse.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    padding: 100px 30px 30px 30px;
+    align-items: flex-start; /* Sejajarkan item ke kiri */
   }
 
   .navbar-collapse .navbar-nav {
@@ -195,7 +189,8 @@ body {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    gap: 20px; /* Beri jarak antar item menu */
+    gap: 20px;
+    list-style: none; /* pastikan list style hilang */
   }
   
   .navbar-collapse .navbar-buttons {
@@ -212,7 +207,19 @@ body {
   }
   
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+  }
+}
+
+/* [PERBAIKAN] Tampilan desktop untuk menu */
+@media (min-width: 993px) {
+  .navbar-collapse {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+  }
+  .navbar-nav {
+    margin: 0 auto; /* Pusatkan menu navigasi */
   }
 }
 
