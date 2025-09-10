@@ -3,7 +3,7 @@
 /* ============================================= */
 
 /* Import Font */
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@800&family=Forum&family=Oxanium:wght@600&family=Poiret+One&family=Quicksand:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@800&family=Forum&family=Oxanium:wght@600&family=Poiret+One&family=Quicksand:wght@500;600;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 /* Palet Warna & Font Variabel */
@@ -33,23 +33,22 @@ body {
   color: var(--ek-text-primary);
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  line-height: 1.2;
   overflow-x: hidden;
 }
 
-/* [REVISI] Mengunci scroll saat mobile menu terbuka */
 body.mobile-menu-active {
   overflow: hidden;
 }
 
 #landingpage-container {
-  padding-top: 80px; /* Jarak untuk navbar fixed (tinggi navbar) */
+  padding-top: 64px; 
   visibility: hidden; 
 }
 
 .container {
-  max-width: 1100px; /* [REVISI] Container lebih rapat */
-  width: 92%;
+  max-width: 1100px; 
+  width: 94%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -63,6 +62,7 @@ body.mobile-menu-active {
   transition: all 0.2s ease;
   border: 1px solid transparent;
   white-space: nowrap;
+  border-radius: 9999px; /* [REVISI] Pastikan semua tombol rounded */
 }
 .btn:hover {
   transform: translateY(-2px);
@@ -70,7 +70,7 @@ body.mobile-menu-active {
 }
 
 /* ============================================= */
-/* HEADER & NAVBAR (REVISI TOTAL)  */
+/* HEADER & NAVBAR                 */
 /* ============================================= */
 .navbar {
   position: fixed;
@@ -81,7 +81,7 @@ body.mobile-menu-active {
   transition: background-color 0.3s ease, border-color 0.3s ease;
   background-color: transparent;
   border-bottom: 1px solid transparent;
-  height: 80px; /* [REVISI 1] Tinggi navbar sesuai referensi */
+  height: 64px;
   display: flex;
   align-items: center;
 }
@@ -100,7 +100,7 @@ body.mobile-menu-active {
 }
 
 .navbar-brand img {
-  height: 36px;
+  height: 32px;
   display: block;
 }
 
@@ -111,7 +111,7 @@ body.mobile-menu-active {
 @media (min-width: 1024px) {
   .nav-menu-desktop {
     display: flex;
-    position: absolute; /* [REVISI 1] Agar bisa di-center sempurna */
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -151,11 +151,11 @@ body.mobile-menu-active {
   font-size: 14px;
   font-weight: 600;
   padding: 0 20px;
-  height: 40px;
+  height: 38px;
 }
 .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-gray-400);
+  border-color: var(--ek-text-primary); /* [REVISI] Border lebih terang saat hover */
 }
 
 .btn-cta {
@@ -165,7 +165,7 @@ body.mobile-menu-active {
   font-weight: 700;
   font-size: 14px;
   padding: 0 20px;
-  height: 40px;
+  height: 38px;
 }
 .btn-cta:hover {
   background-color: var(--ek-accent-hover);
@@ -187,7 +187,7 @@ body.mobile-menu-active {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1001; /* Harus di atas mobile menu */
+  z-index: 1001;
 }
 .hamburger span {
   width: 24px;
@@ -205,10 +205,10 @@ body.mobile-menu-active {
 
 .mobile-menu {
   position: fixed;
-  bottom: -100%; /* [REVISI] Mulai dari bawah */
+  bottom: -100%; 
   left: 0;
   right: 0;
-  background: #1a2433; /* Warna sedikit beda untuk depth */
+  background: #1a2433;
   border-top: 1px solid var(--ek-border);
   padding: 24px;
   transition: bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -219,23 +219,49 @@ body.mobile-menu-active {
 .mobile-menu.open {
   bottom: 0;
 }
-.mobile-menu ul { list-style: none; padding: 0; margin: 0; }
-.mobile-menu ul li a { display: block; padding: 14px 0; font-size: 18px; text-align: center; color: var(--ek-text-primary); }
-.mobile-menu-actions { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
-.mobile-menu-actions .btn { justify-content: center; padding: 12px; font-size: 16px; }
+.mobile-menu ul { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0;
+  text-align: left; /* [REVISI] Menu rata kiri */
+}
+.mobile-menu ul li a { 
+  display: block; 
+  padding: 12px 0; 
+  font-size: 18px; 
+  text-align: left; /* [REVISI] Teks rata kiri */
+  color: var(--ek-text-primary);
+  font-family: var(--font-other); 
+}
+.mobile-menu-actions { 
+  margin-top: 24px; 
+  padding-top: 24px;
+  border-top: 1px solid var(--ek-border);
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+  align-items: center; /* [REVISI] Tombol di tengah */
+}
+.mobile-menu-actions .btn { 
+  justify-content: center; 
+  padding: 12px; 
+  font-size: 16px; 
+  width: 100%; /* [REVISI] Tombol full-width */
+  max-width: 320px; /* [REVISI] Tapi ada lebar maksimum */
+}
 
 /* ============================================= */
 /* HERO SECTION                  */
 /* ============================================= */
 .hero-section {
-  margin-top: -80px; /* [REVISI] Tarik ke atas menutupi navbar */
-  padding: 180px 0 120px 0;
+  margin-top: -72px;
+  padding: 160px 0 120px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  min-height: 70vh;
+  min-height: 75vh;
 }
 
 .hero-background {
@@ -260,12 +286,12 @@ body.mobile-menu-active {
 
 .hero-title {
   font-family: var(--font-title);
-  font-size: clamp(2.2rem, 5vw, 3.2rem); /* [REVISI 3] Font size lebih kecil */
-  font-weight: 800;
-  line-height: 1.3;
-  margin: 0 auto 20px;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 auto 24px;
   color: var(--ek-text-primary);
-  max-width: 900px; /* [REVISI 3] Lebar max ditambah */
+  max-width: none;
 }
 
 .highlight-text-accent {
@@ -275,8 +301,8 @@ body.mobile-menu-active {
 .hero-subtitle,
 .hero-description {
   font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   color: var(--ek-text-secondary);
   max-width: 720px;
   margin: 0 auto 12px;
@@ -284,7 +310,7 @@ body.mobile-menu-active {
 }
 
 .hero-description {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .hero-cta-group {
@@ -296,11 +322,25 @@ body.mobile-menu-active {
 }
 
 .btn-cta-hero, .btn-secondary-hero {
-  padding: 0 28px; /* [REVISI 2] Padding hero button */
-  height: 48px; /* [REVISI 2] Tinggi hero button */
-  font-size: 16px;
+  padding: 0 24px;
+  height: 44px;
+  font-size: 15px;
   font-weight: 600;
   font-family: var(--font-body);
+}
+
+.btn-cta-hero {
+  font-weight: 700;
+}
+
+.btn-secondary-hero {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--ek-text-primary);
+}
+.btn-secondary-hero:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--ek-text-primary);
 }
 
 .hero-sub-cta {
@@ -314,19 +354,24 @@ body.mobile-menu-active {
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.1rem;
+  .hero-title { font-size: 2.1rem; }
+  .hero-subtitle, .hero-description { font-size: 16px; }
+  
+  /* [REVISI] Tombol Hero di mobile */
+  .hero-cta-group {
+    flex-direction: column; /* Tombol menurun ke bawah */
+    align-items: center;
+    gap: 12px; /* Jarak antar tombol */
   }
-  .hero-subtitle, .hero-description {
-    font-size: 16px;
-  }
+
   .btn-cta-hero, .btn-secondary-hero {
-    font-size: 15px;
-    height: 44px;
-    padding: 0 24px;
+    width: 100%;
+    max-width: 300px; /* Lebar maksimum tombol */
+    font-size: 14px;
+    height: 44px; /* Tinggi disamakan */
+    padding: 0 22px;
   }
-  .hero-section {
-    padding: 140px 0 80px 0;
-  }
+  
+  .hero-section { padding: 140px 0 80px 0; }
 }
 
