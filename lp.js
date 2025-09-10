@@ -42,15 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // BARU: Menampilkan halaman setelah semua siap untuk menghindari FOUC (Flash of Unstyled Content)
+    // Menampilkan halaman setelah semua siap untuk menghindari FOUC (Flash of Unstyled Content)
     const landingPageContainer = document.getElementById('landingpage-edukrein');
     if (landingPageContainer) {
-        // Hapus link eksternal CSS dan JS yang mungkin ada dari HTML
-        const externalLink = document.querySelector('link[href="https://admor94.github.io/edukrein/dplp.css"]');
-        const externalScript = document.querySelector('script[src="https://admor94.github.io/edukrein/dplp.js"]');
-        if(externalLink) externalLink.remove();
-        if(externalScript) externalScript.remove();
-        
         landingPageContainer.style.visibility = 'visible';
     }
 });
