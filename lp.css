@@ -1,16 +1,12 @@
 /*
   ===================================================================
-  GAYA CSS UNTUK HALAMAN STATIS BLOGGER
-  Tempel kode ini di dalam tag <style>...</style> setelah kode HTML.
+  KERANGKA CSS - Simpan file ini sebagai lp.css dan unggah ke GitHub.
   ===================================================================
 */
 
 /*=============================================
-=            IMPORT & PENGATURAN DASAR            =
+=        RESET & SEMBUNYIKAN ELEMEN BLOG        =
 =============================================*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-
-/* Menyembunyikan elemen asli blog */
 #header,
 #navfloat,
 #chat,
@@ -21,6 +17,7 @@
 
 body {
   overflow-x: hidden;
+  background-color: #0D1117; /* Set background dasar untuk mencegah flash putih */
 }
 
 /*=============================================
@@ -28,9 +25,13 @@ body {
 =============================================*/
 #landingpage-edukrein .navbar-landing {
   padding: 1rem 0;
+  position: fixed; /* Pastikan navbar tetap di atas */
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1030;
   transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
-
 #landingpage-edukrein .navbar-landing.scrolled {
   background-color: rgba(15, 23, 42, 0.9);
   padding: 0.5rem 0;
@@ -38,32 +39,17 @@ body {
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 #landingpage-edukrein .navbar-brand img {
   height: 40px;
 }
-
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
 }
-
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link:hover,
 #landingpage-edukrein .navbar-dark .navbar-nav .nav-link.active {
-  color: var(--ds-secondary, #e67e22);
+  color: #e67e22; /* Warna aksen Anda */
 }
-
-#landingpage-edukrein .navbar-nav {
-  align-items: center;
-}
-
-#landingpage-edukrein .navbar-landing > .container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-}
-
 @media (max-width: 991.98px) {
   #landingpage-edukrein .navbar-collapse {
     background-color: #0f172a;
@@ -75,11 +61,10 @@ body {
 }
 
 /*=============================================
-=            LANDING PAGE CONTENT               =
+=          GAYA DASAR LANDING PAGE              =
 =============================================*/
 
-/* 1. Pengaturan Dasar & Variabel */
-#landingpage-edukrein .lp-digital-product {
+.lp-digital-product {
     --lp-bg-dark: #0D1117;
     --lp-bg-soft: #161B22;
     --lp-border-color: #30363D;
@@ -94,56 +79,48 @@ body {
     line-height: 1.6;
 }
 
-#landingpage-edukrein .lp-digital-product *,
-#landingpage-edukrein .lp-digital-product *::before,
-#landingpage-edukrein .lp-digital-product *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#landingpage-edukrein .lp-digital-product .container {
+.lp-digital-product .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-#landingpage-edukrein .lp-digital-product section {
+.lp-digital-product section {
     padding: 80px 0;
 }
 
-#landingpage-edukrein .lp-digital-product h1, 
-#landingpage-edukrein .lp-digital-product h2, 
-#landingpage-edukrein .lp-digital-product h3 {
+.lp-digital-product h1, 
+.lp-digital-product h2, 
+.lp-digital-product h3 {
     font-weight: 700;
     line-height: 1.2;
     color: var(--lp-text-primary);
 }
 
-#landingpage-edukrein .lp-digital-product p {
+.lp-digital-product p {
     color: var(--lp-text-secondary);
 }
 
-#landingpage-edukrein .lp-digital-product .section-title {
+.lp-digital-product .section-title {
     text-align: center;
     margin-bottom: 50px;
 }
 
-#landingpage-edukrein .lp-digital-product .section-title h2 {
+.lp-digital-product .section-title h2 {
     font-size: 2.5rem;
     margin-bottom: 10px;
 }
 
-#landingpage-edukrein .lp-digital-product .section-title p {
+.lp-digital-product .section-title p {
     font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
 }
 
-#landingpage-edukrein .lp-digital-product .btn {
+.lp-digital-product .btn {
     display: inline-block;
     background-color: var(--lp-primary-blue);
-    color: white;
+    color: white !important; /* !important untuk override link color dari template */
     padding: 14px 28px;
     border-radius: 8px;
     text-decoration: none;
@@ -151,19 +128,23 @@ body {
     transition: background-color 0.3s ease;
 }
 
-#landingpage-edukrein .lp-digital-product .btn:hover {
+.lp-digital-product .btn:hover {
     background-color: #1A73E8;
-    color: white; /* Ensure text color stays white on hover */
+    color: white !important;
 }
 
 /* 2. Hero Section */
-#landingpage-edukrein .lp-digital-product .hero-section {
+.lp-digital-product .hero-section {
     text-align: center;
-    padding-top: 100px;
+    padding-top: 150px; /* Jarak agar tidak tertutup navbar */
     padding-bottom: 100px;
+    min-height: 80vh; /* Memberi tinggi minimal pada hero */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#landingpage-edukrein .lp-digital-product .hero-section h1 {
+.lp-digital-product .hero-section h1 {
     font-size: 3.5rem;
     font-weight: 800;
     background: -webkit-linear-gradient(45deg, #3B82F6, #A855F7);
@@ -172,159 +153,13 @@ body {
     margin-bottom: 20px;
 }
 
-#landingpage-edukrein .lp-digital-product .hero-section .subtitle {
+.lp-digital-product .hero-section .subtitle {
     font-size: 1.25rem;
     max-width: 700px;
     margin: 0 auto 30px auto;
-    color: var(--lp-text-secondary);
 }
 
-#landingpage-edukrein .lp-digital-product .hero-section .social-proof {
+.lp-digital-product .hero-section .social-proof {
     margin-top: 20px;
-    color: var(--lp-text-secondary);
-}
-
-/* 3. Products Section */
-#landingpage-edukrein .lp-digital-product .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-#landingpage-edukrein .lp-digital-product .product-card {
-    background-color: var(--lp-bg-soft);
-    border: 1px solid var(--lp-border-color);
-    padding: 25px;
-    border-radius: 10px;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-#landingpage-edukrein .lp-digital-product .product-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--lp-primary-blue);
-}
-
-#landingpage-edukrein .lp-digital-product .product-card .icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    line-height: 1;
-}
-
-#landingpage-edukrein .lp-digital-product .product-card h3 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-}
-
-/* 4. Pricing Section */
-#landingpage-edukrein .lp-digital-product .pricing-box {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: var(--lp-bg-soft);
-    border: 1px solid var(--lp-primary-blue);
-    border-radius: 12px;
-    padding: 40px;
-    text-align: center;
-    box-shadow: 0 0 30px rgba(47, 129, 247, 0.2);
-}
-
-#landingpage-edukrein .lp-digital-product .pricing-box h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-#landingpage-edukrein .lp-digital-product .pricing-box .price {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 15px;
-    color: var(--lp-text-primary);
-}
-
-#landingpage-edukrein .lp-digital-product .pricing-box .price small {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--lp-text-secondary);
-}
-
-#landingpage-edukrein .lp-digital-product .pricing-box .features {
-    list-style: none;
-    text-align: left;
-    margin: 30px 0;
-    padding-left: 0;
-}
-
-#landingpage-edukrein .lp-digital-product .pricing-box .features li {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    color: var(--lp-text-secondary);
-}
-
-#landingpage-edukrein .lp-digital-product .pricing-box .features li::before {
-    content: '✓';
-    color: #34D399;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-#landingpage-edukrein .lp-digital-product .pricing-box .btn {
-    width: 100%;
-}
-
-/* 5. FAQ Section */
-#landingpage-edukrein .lp-digital-product .faq-container {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-#landingpage-edukrein .lp-digital-product .faq-item {
-    border-bottom: 1px solid var(--lp-border-color);
-    padding: 20px 0;
-}
-
-#landingpage-edukrein .lp-digital-product .faq-question {
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#landingpage-edukrein .lp-digital-product .faq-question::after {
-    content: '+';
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-#landingpage-edukrein .lp-digital-product .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
-    padding-top: 0;
-}
-
-#landingpage-edukrein .lp-digital-product .faq-item.active .faq-answer {
-    max-height: 200px; 
-    padding-top: 15px;
-}
-
-#landingpage-edukrein .lp-digital-product .faq-item.active .faq-question::after {
-    transform: rotate(45deg);
-}
-
-/* 6. Footer */
-#landingpage-edukrein .lp-digital-product .footer-section {
-    text-align: center;
-    padding: 40px 0;
-    margin-top: 40px;
-    border-top: 1px solid var(--lp-border-color);
-    color: var(--lp-text-secondary);
-}
-
-/* 7. Responsive Design */
-@media (max-width: 768px) {
-    #landingpage-edukrein .lp-digital-product .hero-section h1 { font-size: 2.8rem; }
-    #landingpage-edukrein .lp-digital-product .section-title h2 { font-size: 2rem; }
-    #landingpage-edukrein .lp-digital-product section { padding: 60px 0; }
 }
 
