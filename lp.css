@@ -1,1 +1,7 @@
-
+  #header,
+  #navfloat,
+  #chat,
+  #main,
+  #footer {
+    display: none !important;
+  }
