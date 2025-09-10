@@ -9,6 +9,21 @@ document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.getElementById('landing-navbar');
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('mobile-menu-close-btn');
+
+  // Fungsi untuk membuka menu
+  const openMenu = () => {
+    if (hamburgerBtn) hamburgerBtn.classList.add('open');
+    if (mobileMenu) mobileMenu.classList.add('open');
+    document.body.classList.add('mobile-menu-active');
+  };
+  
+  // Fungsi untuk menutup menu
+  const closeMenu = () => {
+    if (hamburgerBtn) hamburgerBtn.classList.remove('open');
+    if (mobileMenu) mobileMenu.classList.remove('open');
+    document.body.classList.remove('mobile-menu-active');
+  };
 
   // Navbar scroll effect
   window.addEventListener('scroll', () => {
@@ -17,29 +32,48 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Mobile menu toggle (bottom sheet)
-  if (hamburgerBtn && mobileMenu) {
-      hamburgerBtn.addEventListener('click', () => {
-        const isOpen = hamburgerBtn.classList.toggle('open');
-        mobileMenu.classList.toggle('open');
-        document.body.classList.toggle('mobile-menu-active', isOpen);
+  // Event listener untuk tombol hamburger dan close
+  if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = mobileMenu.classList.contains('open');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
       });
   }
+  if (closeBtn) {
+      closeBtn.addEventListener('click', closeMenu);
+  }
 
-  // Smooth scroll + close menu
+  // Menutup menu saat mengklik di luar area menu
+  document.addEventListener('click', function(event) {
+      if (mobileMenu && mobileMenu.classList.contains('open')) {
+          const isClickInsideMenu = mobileMenu.contains(event.target);
+          const isClickOnHamburger = hamburgerBtn.contains(event.target);
+          
+          if (!isClickInsideMenu && !isClickOnHamburger) {
+              closeMenu();
+          }
+      }
+  });
+
+
+  // Smooth scroll + close menu saat link di klik
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const targetId = link.getAttribute('href');
       
-      if (mobileMenu && mobileMenu.classList.contains('open')) {
-          hamburgerBtn.classList.remove('open');
-          mobileMenu.classList.remove('open');
-          document.body.classList.remove('mobile-menu-active');
-      }
+      closeMenu();
 
       if (targetId && targetId.length > 1 && document.querySelector(targetId)) {
         e.preventDefault();
-        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        // Timeout kecil untuk memastikan menu mulai menutup sebelum scroll
+        setTimeout(() => {
+          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }, 100);
       }
     });
   });
