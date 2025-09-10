@@ -1,3 +1,13 @@
+/*
+  ===================================================================
+  GAYA CSS UNTUK HALAMAN STATIS BLOGGER
+  Tempel kode ini di dalam tag <style>...</style> setelah kode HTML.
+  ===================================================================
+*/
+
+/*=============================================
+=            IMPORT & PENGATURAN DASAR            =
+=============================================*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
 /* Menyembunyikan elemen asli blog */
@@ -317,5 +327,4 @@ body {
     #landingpage-edukrein .lp-digital-product .section-title h2 { font-size: 2rem; }
     #landingpage-edukrein .lp-digital-product section { padding: 60px 0; }
 }
-
 
