@@ -47,4 +47,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // karena masalah white blank lebih aman diatasi dengan CSS.
 
 });
-
