@@ -39,8 +39,8 @@
   --lp-mb-2: 2rem;
   --lp-mb-2-5: 2.5rem;
   --lp-z-tooltip: 10;
-  --lp-z-fixed: 1000;
-  --lp-z-modal: 2000;
+  --lp-z-fixed: 100;
+  --lp-z-modal: 1000;
 }
 
 @media screen and (min-width: 1024px) {
@@ -73,30 +73,35 @@
 
 /*
   ==============================================================
-  ATURAN ISOLASI LANDING PAGE (REVISI PENTING)
+  ATURAN ISOLASI LANDING PAGE (REVISI PENTING V2 - FIX BLANK SCREEN)
   ==============================================================
 */
+/* 1. Sembunyikan scrollbar dari tema utama saat landing page aktif */
 body.landing-page-active {
-  background-color: var(--lp-body-color); /* Set background utama */
-  font-family: var(--lp-body-font) !important;
+  overflow: hidden !important;
 }
 
-/* Sembunyikan semua elemen tema utama KECUALI script, style, dan landing page container */
-body.landing-page-active > *:not(script):not(style):not(#landingpage-container) {
-    display: none !important;
-}
-
-/* PENTING: Paksa landing page container untuk terlihat dan mengambil alih viewport */
+/* 2. Jadikan landing page sebagai lapisan yang menutupi seluruh layar */
 body.landing-page-active #landingpage-container {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999; /* Z-index sangat tinggi untuk menutupi semua elemen tema */
+    background-color: var(--lp-body-color);
+    overflow-y: auto; /* Aktifkan scroll hanya untuk landing page */
+    overflow-x: hidden;
+    font-family: var(--lp-body-font);
     font-size: var(--lp-normal-font-size);
     color: var(--lp-text-color);
-    background-color: var(--lp-body-color);
 }
 
 body.mobile-menu-active {
+  /* Aturan ini tetap berguna untuk mencegah scroll di iOS saat menu mobile terbuka */
   overflow: hidden !important;
 }
 /* =============================================================== */
