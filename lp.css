@@ -70,19 +70,44 @@
 #landingpage-container a { text-decoration: none; }
 #landingpage-container img { max-width: 100%; height: auto; }
 
-/* ATURAN ISOLASI LANDING PAGE DARI TEMA UTAMA */
+/*
+  ==============================================================
+  ATURAN ISOLASI LANDING PAGE (INI BAGIAN PENTING UNTUK FIX)
+  ==============================================================
+*/
 body.landing-page-active {
   font-family: var(--lp-body-font);
   font-size: var(--lp-normal-font-size);
   background-color: var(--lp-body-color);
   color: var(--lp-text-color);
 }
-body.landing-page-active > *:not(#landingpage-container):not(link):not(script) {
+/* Menyembunyikan elemen spesifik dari tema utama Blogger */
+body.landing-page-active #contact,
+body.landing-page-active #header,
+body.landing-page-active #navfloat,
+body.landing-page-active #main,
+body.landing-page-active #footer,
+body.landing-page-active #banner,
+body.landing-page-active #shortcut,
+body.landing-page-active #headmaster,
+body.landing-page-active #data,
+body.landing-page-active #video,
+body.landing-page-active #alumni,
+body.landing-page-active #location,
+body.landing-page-active #related,
+body.landing-page-active .main-wrapper,
+body.landing-page-active .sidebar-wrapper {
   display: none !important;
+}
+/* Memastikan kontainer landing page kita selalu terlihat */
+body.landing-page-active #landingpage-container {
+  display: block !important;
+  visibility: visible !important;
 }
 body.mobile-menu-active {
   overflow: hidden !important;
 }
+/* =============================================================== */
 
 /* CLASS CSS YANG DAPAT DIGUNAKAN KEMBALI */
 .lp-container {
@@ -234,7 +259,7 @@ body.mobile-menu-active {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    flex-direction: column; /* Default untuk mobile */
+    flex-wrap: wrap; /* Memungkinkan wrap jika perlu */
 }
 
 .lp-button-hero {
@@ -248,7 +273,8 @@ body.mobile-menu-active {
     font-weight: var(--lp-font-bold);
     transition: all .3s;
     border: 2px solid transparent;
-    width: 100%;
+    flex-grow: 1; /* Biarkan tombol tumbuh */
+    flex-basis: 200px; /* Lebar dasar tombol */
 }
 .lp-button-hero i {
     font-size: 1.25rem;
@@ -274,7 +300,6 @@ body.mobile-menu-active {
     color: var(--lp-accent-color);
     transform: translateY(-3px);
 }
-
 
 /* PLATFORM LOGO SECTION */
 .lp-platform-section {
@@ -319,10 +344,8 @@ body.mobile-menu-active {
 }
 
 @media screen and (min-width: 576px) {
-    .lp-hero-buttons {
-        flex-direction: row; /* Horizontal di layar lebih besar */
-    }
     .lp-button-hero {
+        flex-grow: 0; /* Jangan tumbuh lagi di layar besar */
         width: auto;
     }
 }
