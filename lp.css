@@ -100,7 +100,7 @@ body.mobile-menu-active {
 #landing-navbar .navbar-brand img {
   height: 28px;
   display: block;
-  padding: 0 32px;
+  padding: 0 0 0 24px;
 }
 
 #landing-navbar .nav-menu-desktop { 
@@ -155,7 +155,7 @@ body.mobile-menu-active {
   color: #111;
   font-weight: 700;
   font-size: 13px; /* 0.8125rem */
-  padding: 0 32px;
+  padding: 0 0 0 24px;
   height: 36px;
 }
 #landing-navbar .btn-cta:hover { background-color: var(--ek-accent-hover); }
