@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // ===== LANGKAH KRUSIAL: MENGAKTIFKAN MODE LANDING PAGE =====
   // Menambahkan class ke <body>. Class ini akan memicu aturan
-  // di lp.css untuk menyembunyikan elemen tema utama Blogger.
+  // di lp.css untuk membuat landing page menutupi layar.
   document.body.classList.add('landing-page-active');
 
   /*==================== MENU MOBILE ====================*/
@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
   /* Sembunyikan menu saat klik di luar area menu */
   document.addEventListener('click', (event) => {
       const isClickInsideMenu = navMenu.contains(event.target);
-      const isClickOnToggle = navToggle.contains(event.target);
+      const isClickOnToggle = navToggle && navToggle.contains(event.target);
       
-      if (navMenu.classList.contains('show-menu') && !isClickInsideMenu && !isClickOnToggle) {
+      if (navMenu && navMenu.classList.contains('show-menu') && !isClickInsideMenu && !isClickOnToggle) {
           navMenu.classList.remove('show-menu');
           document.body.classList.remove('mobile-menu-active');
       }
@@ -62,13 +62,21 @@ document.addEventListener('DOMContentLoaded', function() {
   function scrollHeader() {
     const header = document.getElementById('lp-header');
     if( !header ) return;
-    if (this.scrollY >= 50) {
+    // Kita targetkan scroll di dalam container landing page, bukan window
+    const container = document.getElementById('landingpage-container');
+    if (!container) return;
+
+    if (container.scrollTop >= 50) {
       header.classList.add('lp-header-scrolled');
     } else {
       header.classList.remove('lp-header-scrolled');
     }
   }
-  window.addEventListener('scroll', scrollHeader);
+  // Event listener sekarang dipasang di container landing page
+  const container = document.getElementById('landingpage-container');
+  if (container) {
+    container.addEventListener('scroll', scrollHeader);
+  }
   
   /*==================== SMOOTH SCROLL UNTUK NAV-LINK ====================*/
     const internalLinks = document.querySelectorAll('.lp-nav-link[href^="#"], .lp-button-hero[href^="#"]');
@@ -77,15 +85,17 @@ document.addEventListener('DOMContentLoaded', function() {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            // Pastikan kita mencari elemen di dalam landing page container
+            const targetElement = document.querySelector('#landingpage-container ' + targetId);
+            const container = document.getElementById('landingpage-container');
 
-            if (targetElement) {
-                // Memberi sedikit ruang di atas section saat scroll
+            if (targetElement && container) {
                 const headerOffset = 80; 
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                // Kalkulasi posisi scroll relatif terhadap container
+                const elementPosition = targetElement.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
               
-                window.scrollTo({
+                container.scrollTo({
                      top: offsetPosition,
                      behavior: "smooth"
                 });
