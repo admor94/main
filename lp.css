@@ -39,7 +39,8 @@
   --lp-mb-2: 2rem;
   --lp-mb-2-5: 2.5rem;
   --lp-z-tooltip: 10;
-  --lp-z-fixed: 100;
+  --lp-z-fixed: 1000;
+  --lp-z-modal: 2000;
 }
 
 @media screen and (min-width: 1024px) {
@@ -72,38 +73,29 @@
 
 /*
   ==============================================================
-  ATURAN ISOLASI LANDING PAGE (INI BAGIAN PENTING UNTUK FIX)
+  ATURAN ISOLASI LANDING PAGE (REVISI PENTING)
   ==============================================================
 */
 body.landing-page-active {
-  font-family: var(--lp-body-font);
-  font-size: var(--lp-normal-font-size);
-  background-color: var(--lp-body-color);
-  color: var(--lp-text-color);
+  background-color: var(--lp-body-color); /* Set background utama */
+  font-family: var(--lp-body-font) !important;
 }
-/* Menyembunyikan elemen spesifik dari tema utama Blogger */
-body.landing-page-active #contact,
-body.landing-page-active #header,
-body.landing-page-active #navfloat,
-body.landing-page-active #main,
-body.landing-page-active #footer,
-body.landing-page-active #banner,
-body.landing-page-active #shortcut,
-body.landing-page-active #headmaster,
-body.landing-page-active #data,
-body.landing-page-active #video,
-body.landing-page-active #alumni,
-body.landing-page-active #location,
-body.landing-page-active #related,
-body.landing-page-active .main-wrapper,
-body.landing-page-active .sidebar-wrapper {
-  display: none !important;
+
+/* Sembunyikan semua elemen tema utama KECUALI script, style, dan landing page container */
+body.landing-page-active > *:not(script):not(style):not(#landingpage-container) {
+    display: none !important;
 }
-/* Memastikan kontainer landing page kita selalu terlihat */
+
+/* PENTING: Paksa landing page container untuk terlihat dan mengambil alih viewport */
 body.landing-page-active #landingpage-container {
-  display: block !important;
-  visibility: visible !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: var(--lp-normal-font-size);
+    color: var(--lp-text-color);
+    background-color: var(--lp-body-color);
 }
+
 body.mobile-menu-active {
   overflow: hidden !important;
 }
@@ -210,6 +202,7 @@ body.mobile-menu-active {
     border-top-left-radius: 1.5rem;
     border-top-right-radius: 1.5rem;
     transition: bottom .4s;
+    z-index: var(--lp-z-modal);
   }
 }
 .show-menu { bottom: 0; }
