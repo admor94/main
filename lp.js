@@ -1,75 +1,88 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const landingContainer = document.getElementById('landingpage-container');
-  if (landingContainer) {
-    document.body.prepend(landingContainer);
-    landingContainer.style.visibility = 'visible';
-    document.body.classList.add('landing-page-active');
-  }
+/* ===============================================================
+  KODE JAVASCRIPT LANDING PAGE
+  - Buat file baru bernama lp.js di repositori GitHub Anda.
+  - Salin semua kode di bawah ini dan tempelkan ke file lp.js.
+  - URL file ini akan menjadi: https://admor94.github.io/main/lp.js
+  ===============================================================
+*/
 
-  const navbar = document.getElementById('landing-navbar');
-  const hamburgerBtn = document.getElementById('hamburger-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const closeBtn = document.getElementById('mobile-menu-close-btn');
+document.addEventListener('DOMContentLoaded', function() {
 
-  const openMenu = () => {
-    if (mobileMenu) mobileMenu.classList.add('open');
-    document.body.classList.add('mobile-menu-active');
-  };
-  
-  const closeMenu = () => {
-    if (mobileMenu) mobileMenu.classList.remove('open');
-    document.body.classList.remove('mobile-menu-active');
-  };
+  // ===== LANGKAH KRUSIAL: MENGAKTIFKAN MODE LANDING PAGE =====
+  // Menambahkan class ke <body> untuk mengisolasi style landing page
+  // dari tema utama Blogger.
+  document.body.classList.add('landing-page-active');
 
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    if (navbar) {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-    }
-  });
+  /*==================== MENU MOBILE ====================*/
+  const navMenu = document.getElementById('nav-menu'),
+        navToggle = document.getElementById('nav-toggle'),
+        navClose = document.getElementById('nav-close');
 
-  // Event listeners untuk tombol
-  if (hamburgerBtn) {
-      hamburgerBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isOpen = mobileMenu.classList.contains('open');
-        if (isOpen) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      });
-  }
-  if (closeBtn) {
-      closeBtn.addEventListener('click', closeMenu);
-  }
-
-  // Menutup menu saat mengklik di luar area menu
-  document.body.addEventListener('click', function(event) {
-      if (mobileMenu && mobileMenu.classList.contains('open')) {
-          const isClickInsideMenu = mobileMenu.contains(event.target);
-          const isClickOnHamburger = hamburgerBtn.contains(event.target);
-          
-          if (!isClickInsideMenu && !isClickOnHamburger) {
-              closeMenu();
-          }
-      }
-  });
-
-  // Smooth scroll & close menu saat link diklik
-  document.querySelectorAll('#landingpage-container a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const targetId = link.getAttribute('href');
-      
-      closeMenu();
-
-      if (targetId && targetId.length > 1 && document.querySelector(targetId)) {
-        e.preventDefault();
-        setTimeout(() => {
-          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        }, 300); // Waktu tunda untuk transisi menu
-      }
+  /* Tampilkan Menu */
+  if (navToggle) {
+    navToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      navMenu.classList.add('show-menu');
+      document.body.classList.add('mobile-menu-active');
     });
+  }
+
+  /* Sembunyikan Menu dengan Tombol Close */
+  if (navClose) {
+    navClose.addEventListener('click', () => {
+      navMenu.classList.remove('show-menu');
+      document.body.classList.remove('mobile-menu-active');
+    });
+  }
+  
+  /* Sembunyikan menu saat link diklik */
+  const navLinks = document.querySelectorAll('.lp-nav-link');
+  navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+          if (navMenu.classList.contains('show-menu')) {
+              navMenu.classList.remove('show-menu');
+              document.body.classList.remove('mobile-menu-active');
+          }
+      });
   });
+
+  /* Sembunyikan menu saat klik di luar area menu */
+  document.addEventListener('click', (event) => {
+      if (navMenu.classList.contains('show-menu') && !navMenu.contains(event.target) && event.target !== navToggle) {
+          navMenu.classList.remove('show-menu');
+          document.body.classList.remove('mobile-menu-active');
+      }
+  });
+
+
+  /*==================== GANTI BACKGROUND HEADER SAAT SCROLL ====================*/
+  function scrollHeader() {
+    const header = document.getElementById('lp-header');
+    if (this.scrollY >= 50) {
+      header.classList.add('lp-header-scrolled');
+    } else {
+      header.classList.remove('lp-header-scrolled');
+    }
+  }
+  window.addEventListener('scroll', scrollHeader);
+  
+  /*==================== SMOOTH SCROLL UNTUK NAV-LINK ====================*/
+    const internalLinks = document.querySelectorAll('.lp-nav-link[href^="#"], .lp-button-hero[href^="#"]');
+    
+    internalLinks.forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
 });
 
