@@ -95,15 +95,17 @@ body.mobile-menu-active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 24px;
 }
 
 #landing-navbar .navbar-brand img {
   height: 28px;
   display: block;
+  padding: 0 32px;
 }
 
-#landing-navbar .nav-menu-desktop { display: none; }
+#landing-navbar .nav-menu-desktop { 
+  display: none; 
+}
 
 @media (min-width: 1024px) {
   #landing-navbar .nav-menu-desktop {
@@ -153,7 +155,7 @@ body.mobile-menu-active {
   color: #111;
   font-weight: 700;
   font-size: 13px; /* 0.8125rem */
-  padding: 0 16px;
+  padding: 0 32px;
   height: 36px;
 }
 #landing-navbar .btn-cta:hover { background-color: var(--ek-accent-hover); }
