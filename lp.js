@@ -13,14 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Fungsi untuk membuka menu
   const openMenu = () => {
-    if (hamburgerBtn) hamburgerBtn.classList.add('open');
     if (mobileMenu) mobileMenu.classList.add('open');
     document.body.classList.add('mobile-menu-active');
   };
   
   // Fungsi untuk menutup menu
   const closeMenu = () => {
-    if (hamburgerBtn) hamburgerBtn.classList.remove('open');
     if (mobileMenu) mobileMenu.classList.remove('open');
     document.body.classList.remove('mobile-menu-active');
   };
@@ -36,12 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (hamburgerBtn) {
       hamburgerBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isOpen = mobileMenu.classList.contains('open');
-        if (isOpen) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
+        openMenu();
       });
   }
   if (closeBtn) {
@@ -49,31 +42,31 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Menutup menu saat mengklik di luar area menu
-  document.addEventListener('click', function(event) {
-      if (mobileMenu && mobileMenu.classList.contains('open')) {
-          const isClickInsideMenu = mobileMenu.contains(event.target);
-          const isClickOnHamburger = hamburgerBtn.contains(event.target);
-          
-          if (!isClickInsideMenu && !isClickOnHamburger) {
+  if (mobileMenu) {
+      mobileMenu.addEventListener('click', function(event) {
+          // Hanya tutup jika yang diklik adalah latar belakang overlay, bukan kontennya
+          if (event.target === mobileMenu) {
               closeMenu();
           }
-      }
-  });
-
+      });
+  }
 
   // Smooth scroll + close menu saat link di klik
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
+  document.querySelectorAll('#landingpage-container a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const targetId = link.getAttribute('href');
       
+      // Selalu tutup menu saat link di klik
       closeMenu();
 
+      // Lakukan smooth scroll jika target ada di halaman
       if (targetId && targetId.length > 1 && document.querySelector(targetId)) {
         e.preventDefault();
+        
         // Timeout kecil untuk memastikan menu mulai menutup sebelum scroll
         setTimeout(() => {
           document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+        }, 300); // Waktu disesuaikan dengan transisi menu
       }
     });
   });
