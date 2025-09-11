@@ -1,107 +1,75 @@
-/* ===============================================================
-  KODE JAVASCRIPT LANDING PAGE
-  - File ini tidak memerlukan perubahan.
-  - Cukup pastikan file ini sudah di-host di:
-    https://admor94.github.io/main/lp.js
-  ===============================================================
-*/
-
-document.addEventListener('DOMContentLoaded', function() {
-
-  // ===== LANGKAH KRUSIAL: MENGAKTIFKAN MODE LANDING PAGE =====
-  // Menambahkan class ke <body>. Class ini akan memicu aturan
-  // di lp.css untuk membuat landing page menutupi layar.
-  document.body.classList.add('landing-page-active');
-
-  /*==================== MENU MOBILE ====================*/
-  const navMenu = document.getElementById('nav-menu'),
-        navToggle = document.getElementById('nav-toggle'),
-        navClose = document.getElementById('nav-close');
-
-  /* Tampilkan Menu */
-  if (navToggle) {
-    navToggle.addEventListener('click', (event) => {
-      event.stopPropagation();
-      navMenu.classList.add('show-menu');
-      document.body.classList.add('mobile-menu-active');
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  const landingContainer = document.getElementById('landingpage-container');
+  if (landingContainer) {
+    document.body.prepend(landingContainer);
+    landingContainer.style.visibility = 'visible';
+    document.body.classList.add('landing-page-active');
   }
 
-  /* Sembunyikan Menu dengan Tombol Close */
-  if (navClose) {
-    navClose.addEventListener('click', () => {
-      navMenu.classList.remove('show-menu');
-      document.body.classList.remove('mobile-menu-active');
-    });
-  }
+  const navbar = document.getElementById('landing-navbar');
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('mobile-menu-close-btn');
+
+  const openMenu = () => {
+    if (mobileMenu) mobileMenu.classList.add('open');
+    document.body.classList.add('mobile-menu-active');
+  };
   
-  /* Sembunyikan menu saat link diklik */
-  const navLinks = document.querySelectorAll('.lp-nav-link');
-  navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-          if (navMenu.classList.contains('show-menu')) {
-              navMenu.classList.remove('show-menu');
-              document.body.classList.remove('mobile-menu-active');
-          }
-      });
+  const closeMenu = () => {
+    if (mobileMenu) mobileMenu.classList.remove('open');
+    document.body.classList.remove('mobile-menu-active');
+  };
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    if (navbar) {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }
   });
 
-  /* Sembunyikan menu saat klik di luar area menu */
-  document.addEventListener('click', (event) => {
-      const isClickInsideMenu = navMenu.contains(event.target);
-      const isClickOnToggle = navToggle && navToggle.contains(event.target);
-      
-      if (navMenu && navMenu.classList.contains('show-menu') && !isClickInsideMenu && !isClickOnToggle) {
-          navMenu.classList.remove('show-menu');
-          document.body.classList.remove('mobile-menu-active');
+  // Event listeners untuk tombol
+  if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = mobileMenu.classList.contains('open');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+  }
+  if (closeBtn) {
+      closeBtn.addEventListener('click', closeMenu);
+  }
+
+  // Menutup menu saat mengklik di luar area menu
+  document.body.addEventListener('click', function(event) {
+      if (mobileMenu && mobileMenu.classList.contains('open')) {
+          const isClickInsideMenu = mobileMenu.contains(event.target);
+          const isClickOnHamburger = hamburgerBtn.contains(event.target);
+          
+          if (!isClickInsideMenu && !isClickOnHamburger) {
+              closeMenu();
+          }
       }
   });
 
+  // Smooth scroll & close menu saat link diklik
+  document.querySelectorAll('#landingpage-container a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const targetId = link.getAttribute('href');
+      
+      closeMenu();
 
-  /*==================== GANTI BACKGROUND HEADER SAAT SCROLL ====================*/
-  function scrollHeader() {
-    const header = document.getElementById('lp-header');
-    if( !header ) return;
-    // Kita targetkan scroll di dalam container landing page, bukan window
-    const container = document.getElementById('landingpage-container');
-    if (!container) return;
-
-    if (container.scrollTop >= 50) {
-      header.classList.add('lp-header-scrolled');
-    } else {
-      header.classList.remove('lp-header-scrolled');
-    }
-  }
-  // Event listener sekarang dipasang di container landing page
-  const container = document.getElementById('landingpage-container');
-  if (container) {
-    container.addEventListener('scroll', scrollHeader);
-  }
-  
-  /*==================== SMOOTH SCROLL UNTUK NAV-LINK ====================*/
-    const internalLinks = document.querySelectorAll('.lp-nav-link[href^="#"], .lp-button-hero[href^="#"]');
-    
-    internalLinks.forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            // Pastikan kita mencari elemen di dalam landing page container
-            const targetElement = document.querySelector('#landingpage-container ' + targetId);
-            const container = document.getElementById('landingpage-container');
-
-            if (targetElement && container) {
-                const headerOffset = 80; 
-                // Kalkulasi posisi scroll relatif terhadap container
-                const elementPosition = targetElement.offsetTop;
-                const offsetPosition = elementPosition - headerOffset;
-              
-                container.scrollTo({
-                     top: offsetPosition,
-                     behavior: "smooth"
-                });
-            }
-        });
+      if (targetId && targetId.length > 1 && document.querySelector(targetId)) {
+        e.preventDefault();
+        setTimeout(() => {
+          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }, 300); // Waktu tunda untuk transisi menu
+      }
     });
-
+  });
 });
 
