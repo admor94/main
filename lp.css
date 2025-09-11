@@ -101,6 +101,8 @@ body.mobile-menu-active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 #landing-navbar .navbar-brand img {
@@ -279,7 +281,7 @@ body.mobile-menu-active {
 /* ============================================= */
 .hero-section {
   margin-top: -64px;
-  padding: 160px 0 140px 0;
+  padding: 100px 0 120px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -288,6 +290,10 @@ body.mobile-menu-active {
   min-height: 85vh;
 }
 
+.hero-section .container{
+  max-width: 100px;
+}
+  
 .hero-background {
   position: absolute;
   inset: 0;
@@ -313,7 +319,7 @@ body.mobile-menu-active {
   font-size: 52px; /* [REVISI 2] 3rem */
   font-weight: 800;
   line-height: 1.25;
-  margin: 0 auto 24px;
+  margin: 0 auto 28px;
   color: var(--ek-text-primary);
   max-width: 800px;
 }
@@ -341,7 +347,7 @@ body.mobile-menu-active {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px; /* [REVISI] Jarak antar tombol lebih rapat */
+  gap: 14px; /* [REVISI] Jarak antar tombol lebih rapat */
   flex-wrap: wrap;
 }
 
@@ -362,6 +368,8 @@ body.mobile-menu-active {
   padding: 0 22px; /* [REVISI] Ukuran tombol disesuaikan */
   height: 42px; /* [REVISI] Ukuran tombol disesuaikan */
   font-size: 15px; /* 0.9375rem */
+  line-height: 42px;
+  border-radius: 6px;
   font-weight: 600;
   font-family: var(--font-body);
 }
