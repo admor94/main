@@ -1,8 +1,9 @@
-/* Import Font Pilihan Anda */
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800;900&family=Forum&family=Oxanium:wght@500;600&family=Poiret+One&family=Quicksand:wght@400;500;600&display=swap');
+/* ============================================= */
+/* PENGATURAN DASAR & FONT             */
+/* ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800;900&family=Forum&family=Oxanium:wght@500;600&family=Poiret+One&family=Quicksand:wght@400;500;600;700&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
-/* Variabel Desain */
 :root {
   --font-title: 'Exo 2', sans-serif;
   --font-subtitle: 'Oxanium', sans-serif;
@@ -15,11 +16,10 @@
   --ek-text-primary: #f9fafb;
   --ek-text-secondary: #9ca3af;
   --ek-accent: #facc15;
-  --ek-accent-hover: #fde047;
+  --ek-accent-hover: #eab308;
   --ek-border: #374151;
 }
 
-/* Reset & Paksa Tampilan Landing Page */
 body.landing-page-active {
   background: var(--ek-bg) !important;
   overflow-x: hidden !important;
@@ -29,22 +29,20 @@ body.landing-page-active {
   margin: 0;
   padding: 0;
 }
-
 body.landing-page-active > *:not(#landingpage-container):not(link):not(script) {
   display: none !important;
 }
-
 body.mobile-menu-active {
   overflow: hidden !important;
 }
 
 #landingpage-container {
-  padding-top: 64px; /* Disesuaikan dengan tinggi navbar */
+  padding-top: 64px;
   visibility: hidden; 
 }
 
 .container {
-  max-width: 1140px;
+  max-width: 1065px;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -81,7 +79,7 @@ body.mobile-menu-active {
   transition: background-color 0.3s ease, border-color 0.3s ease;
   background-color: transparent;
   border-bottom: 1px solid transparent;
-  height: 72px; /* [REVISI 1] Tinggi navbar lebih ramping */
+  height: 64px;
   display: flex;
   align-items: center;
 }
@@ -97,18 +95,14 @@ body.mobile-menu-active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 32px;
-  padding-right: 32px;
 }
 
 #landing-navbar .navbar-brand img {
-  height: 36px; /* [REVISI] Logo sedikit lebih kecil */
+  height: 28px;
   display: block;
 }
 
-#landing-navbar .nav-menu-desktop {
-  display: none; 
-}
+#landing-navbar .nav-menu-desktop { display: none; }
 
 @media (min-width: 1024px) {
   #landing-navbar .nav-menu-desktop {
@@ -128,32 +122,25 @@ body.mobile-menu-active {
 }
 
 #landing-navbar .nav-link {
-  font-family: var(--font-body); /* [REVISI] Font disamakan */
+  font-family: var(--font-body);
   color: var(--ek-text-secondary);
   text-decoration: none;
-  font-size: 15px; /* [REVISI 2] 0.9375rem */
+  font-size: 14px; /* 0.875rem */
   font-weight: 600;
   transition: color 0.3s ease;
 }
-#landing-navbar .nav-link:hover {
-  color: var(--ek-text-primary);
-}
+#landing-navbar .nav-link:hover { color: var(--ek-text-primary); }
 
-#landing-navbar .nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+#landing-navbar .nav-actions { display: flex; align-items: center; gap: 12px; }
 
 #landing-navbar .btn-secondary {
-  font-family: var(--font-body);
   background-color: transparent;
   color: var(--ek-text-primary);
   border: 1px solid var(--ek-border) !important;
-  font-size: 14px; /* [REVISI 2] 0.875rem */
+  font-size: 13px; /* 0.8125rem */
   font-weight: 600;
-  padding: 0 20px;
-  height: 36px; /* [REVISI 1] Tombol lebih kecil */
+  padding: 0 16px;
+  height: 36px;
 }
 #landing-navbar .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -161,26 +148,21 @@ body.mobile-menu-active {
 }
 
 #landing-navbar .btn-cta {
-  font-family: var(--font-body);
   background-color: var(--ek-accent);
-  color: var(--ek-bg);
+  color: #111;
   font-weight: 700;
-  font-size: 14px; /* [REVISI 2] 0.875rem */
-  padding: 0 20px;
-  height: 36px; /* [REVISI 1] Tombol lebih kecil */
+  font-size: 13px; /* 0.8125rem */
+  padding: 0 16px;
+  height: 36px;
 }
-#landing-navbar .btn-cta:hover {
-  background-color: var(--ek-accent-hover);
-}
+#landing-navbar .btn-cta:hover { background-color: var(--ek-accent-hover); }
 
 @media (max-width: 1023px) {
   #landing-navbar .nav-menu-desktop,
-  #landing-navbar .nav-actions .btn { 
-    display: none; 
-  }
+  #landing-navbar .nav-actions .btn { display: none; }
 }
 
-/* ================= MOBILE MENU (REVISI TOTAL) ================= */
+/* ================= MOBILE MENU (BOTTOM SHEET) ================= */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -192,12 +174,7 @@ body.mobile-menu-active {
   cursor: pointer;
   z-index: 1003;
 }
-.hamburger span {
-  width: 24px;
-  height: 2px;
-  background: var(--ek-text-primary);
-  border-radius: 2px;
-}
+.hamburger span { width: 24px; height: 2px; background: var(--ek-text-primary); border-radius: 2px; }
 @media (min-width: 1024px) { .hamburger { display: none; } }
 
 .mobile-menu {
@@ -207,28 +184,24 @@ body.mobile-menu-active {
   right: 0;
   background: var(--ek-bg-menu);
   border-top: 1px solid var(--ek-border);
-  padding: 16px;
+  padding: 16px 24px 24px 24px;
   transition: bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 1002;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
-.mobile-menu.open {
-  bottom: 0;
-}
-.mobile-menu-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
+.mobile-menu.open { bottom: 0; }
+.mobile-menu-header { display: flex; justify-content: center; align-items: center; margin-bottom: 16px; position: relative; }
 .mobile-menu-title {
   font-family: var(--font-subtitle);
   font-size: 14px; /* 0.875rem */
   font-weight: 600;
   color: var(--ek-text-secondary);
+  text-align: center;
 }
 .close-btn {
+  position: absolute;
+  right: 0;
   background: transparent;
   border: none;
   color: var(--ek-text-secondary);
@@ -236,28 +209,17 @@ body.mobile-menu-active {
   cursor: pointer;
   padding: 8px;
 }
-.mobile-menu-links { 
-  list-style: none; 
-  padding: 0; 
-  margin: 0;
-  text-align: left;
-}
+.mobile-menu-links { list-style: none; padding: 0; margin: 0; text-align: left; }
 .mobile-menu-links li a { 
   display: block; 
-  padding: 10px 0; 
-  font-size: 16px; /* 1rem */
+  padding: 12px 0; 
+  font-size: 18px; /* 1.125rem */
   font-weight: 600;
   text-align: left;
   color: var(--ek-text-primary);
 }
-.mobile-menu-links li a:hover {
-    color: var(--ek-accent);
-}
-.mobile-menu-divider {
-  height: 1px;
-  background-color: var(--ek-border);
-  margin: 16px 0;
-}
+.mobile-menu-links li a:hover { color: var(--ek-accent); }
+.mobile-menu-divider { height: 1px; background-color: var(--ek-border); margin: 16px 0; }
 .mobile-menu-actions { 
   display: flex; 
   flex-direction: column; 
@@ -277,57 +239,43 @@ body.mobile-menu-active {
 /* ============================================= */
 .hero-section {
   margin-top: -64px;
-  padding: 150px 0 130px 0;
+  padding: 100px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  min-height: 85vh;
+  min-height: 500px;
 }
 
-.hero-section .container{
-  max-width: 1140px;
-  margin: 0 auto;
-  padding-left: 32px;
-  padding-right: 32px;
-}
-  
 .hero-background {
   position: absolute;
   inset: 0;
   background: url('https://image.web.id/images/clipboard-image-1750755434.png') no-repeat center/cover;
-  opacity: 0.4;
+  opacity: 0.35;
   z-index: -1;
 }
 .hero-section::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent, rgba(18,18,18,0.5) 70%, var(--ek-bg) 100%);
+  background: linear-gradient(to top, var(--ek-bg) 5%, transparent 50%);
   z-index: 0;
 }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
+.hero-content { position: relative; z-index: 1; }
 
 .hero-title {
   font-family: var(--font-title);
-  font-size: 52px; /* [REVISI 2] 3rem */
+  font-size: 46px; /* [REVISI 2] 2.875rem */
   font-weight: 800;
-  line-height: 1.25;
-  margin-bottom: 28px;
+  line-height: 1.3;
+  margin: 0 auto 16px;
   color: var(--ek-text-primary);
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.highlight-text-accent {
-  color: var(--ek-accent);
-}
+.highlight-text-accent { color: var(--ek-accent); }
 
 .hero-subtitle,
 .hero-description {
@@ -335,104 +283,87 @@ body.mobile-menu-active {
   font-size: 16px; /* [REVISI 2] 1rem */
   font-weight: 500;
   color: var(--ek-text-secondary);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 680px;
+  margin: 0 auto 10px;
   line-height: 1.7;
 }
-
-.hero-description {
-  margin-bottom: 32px; /* [REVISI 3] Jarak ke tombol lebih dekat */
-}
+.hero-description { margin-bottom: 24px; }
 
 .hero-cta-group {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 18px; /* [REVISI] Jarak antar tombol lebih rapat */
+  gap: 12px;
   flex-wrap: wrap;
 }
 
-.btn-cta-hero {
-  background-color: var(--ek-accent);
-  color: var(--ek-bg);
-  font-size: 16px;
-  padding: 0 28px;
-  height: 46px;
-  font-weight: 700;
-}
-
-.btn-cta-hero:hover {
-  background-color: var(--ek-accent-hover);
-}
-
 .btn-cta-hero, .btn-secondary-hero {
-  padding: 0 24px; /* [REVISI] Ukuran tombol disesuaikan */
-  height: 44px; /* [REVISI] Ukuran tombol disesuaikan */
-  font-size: 15px; /* 0.9375rem */
-  line-height: 42px;
-  border-radius: 6px;
-  font-weight: 600;
+  padding: 0 22px;
+  height: 42px;
+  font-size: 14px; /* [REVISI 2] 0.875rem */
+  font-weight: 700;
   font-family: var(--font-body);
 }
 
 .btn-secondary-hero {
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  color: var(--ek-text-primary) !important; /* [REVISI] Paksa warna teks */
-  font-size: 16px;
-  padding: 0 28px;
-  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: var(--ek-text-primary) !important;
 }
 .btn-secondary-hero:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: var(--ek-text-primary) !important;
 }
 
-.hero-sub-cta {
+/* ============================================= */
+/* SOCIAL PROOF SECTION          */
+/* ============================================= */
+.social-proof-section {
+  padding: 40px 0;
+  position: relative;
+  z-index: 1;
+}
+.social-proof-title {
   font-family: var(--font-subtitle);
   font-weight: 600;
   color: var(--ek-text-secondary);
-  margin-top: 60px;
+  margin: 0 0 24px 0;
   font-size: 14px; /* 0.875rem */
-  letter-spacing: 0.5px;
+  text-align: center;
+}
+.social-proof-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.logo-item img {
+  height: 24px; /* 1.5rem */
+  width: auto;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.logo-item img:hover {
+  opacity: 1;
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  #landingpage-container {
-    padding: 64px 20px 0;
-  }
-  .hero-section {
-    padding: 120px 0 80px 0; 
-  }
-  .hero-title {
-    font-size: 32px; /* 2rem */
-    line-height: 1.3;
-  }
-  .hero-subtitle, .hero-description { 
-    font-size: 15px; /* 0.9375rem */ 
-  }
+  .hero-title { font-size: 32px; /* 2rem */ }
+  .hero-subtitle, .hero-description { font-size: 15px; /* 0.9375rem */ }
   
   .hero-cta-group {
-    flex-direction: row; /* [REVISI 5] Kembali ke horizontal */
+    flex-direction: row; /* [REVISI 5] Tetap horizontal */
     justify-content: center;
-    gap: 18px;
   }
-  
   .btn-cta-hero, .btn-secondary-hero {
-    width: auto; /* [REVISI 5] Lebar otomatis */
+    width: auto;
     max-width: none;
-    font-size: 14px; /* 0.875rem */
-    height: 42px;
-    padding: 0 20px;
-  }
-
-  .mobile-menu-actions .btn-cta {
-  background-color: var(--ek-accent) !important;
-  color: var(--ek-bg) !important;
-  border: none !important;
   }
   
+  .hero-section { padding: 120px 0 80px 0; }
+  .social-proof-grid { gap: 24px; }
+  .logo-item img { height: 20px; /* 1.25rem */ }
 }
 
