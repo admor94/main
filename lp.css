@@ -12,7 +12,6 @@
 /*===== VARIABEL CSS =====*/
 :root {
   --lp-header-height: 3.5rem;
-  --lp-hue: 200;
   --lp-primary-color: #04202c;
   --lp-accent-color: #e67e22;
   --lp-text-color: #CBD5E1;
@@ -20,38 +19,32 @@
   --lp-white-color: #FFF;
   --lp-body-color: #0F172A;
   --lp-container-color: #1E293B;
+  
   --lp-body-font: 'Quicksand', sans-serif;
   --lp-heading-font: 'Exo 2', sans-serif;
-  --lp-h1-font-size: 2.5rem;
-  --lp-h2-font-size: 1.5rem;
-  --lp-h3-font-size: 1.25rem;
-  --lp-normal-font-size: 1rem;
-  --lp-small-font-size: .875rem;
-  --lp-smaller-font-size: .813rem;
+
+  --lp-h1-font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  --lp-h2-font-size: 2rem;
+  --lp-h3-font-size: 1.5rem;
+  --lp-normal-font-size: 1.125rem;
+  --lp-small-font-size: .938rem;
+
   --lp-font-medium: 500;
   --lp-font-semibold: 600;
   --lp-font-bold: 700;
   --lp-font-extrabold: 800;
+
   --lp-mb-0-5: .5rem;
   --lp-mb-0-75: .75rem;
   --lp-mb-1: 1rem;
   --lp-mb-1-5: 1.5rem;
   --lp-mb-2: 2rem;
   --lp-mb-2-5: 2.5rem;
+  --lp-mb-3: 3rem;
+
   --lp-z-tooltip: 10;
   --lp-z-fixed: 100;
   --lp-z-modal: 1000;
-}
-
-@media screen and (min-width: 1024px) {
-  :root {
-    --lp-h1-font-size: 3.5rem;
-    --lp-h2-font-size: 2rem;
-    --lp-h3-font-size: 1.5rem;
-    --lp-normal-font-size: 1.125rem;
-    --lp-small-font-size: .938rem;
-    --lp-smaller-font-size: .875rem;
-  }
 }
 
 /* DASAR */
@@ -59,29 +52,32 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#landingpage-container h1, #landingpage-container h2, #landingpage-container h3 {
+#landingpage-container h1, 
+#landingpage-container h2, 
+#landingpage-container h3 {
   color: var(--lp-white-color);
   font-family: var(--lp-heading-font);
   font-weight: var(--lp-font-bold);
+  line-height: 1.2;
 }
 
 #landingpage-container ul { list-style: none; }
-#landingpage-container a { text-decoration: none; }
+#landingpage-container a { color: inherit; text-decoration: none; }
 #landingpage-container img { max-width: 100%; height: auto; }
 
 /*
   ==============================================================
-  ATURAN ISOLASI LANDING PAGE (REVISI PENTING V2 - FIX BLANK SCREEN)
+  ATURAN ISOLASI LANDING PAGE (V2 - FIX BLANK SCREEN)
   ==============================================================
 */
-/* 1. Sembunyikan scrollbar dari tema utama saat landing page aktif */
 body.landing-page-active {
   overflow: hidden !important;
 }
 
-/* 2. Jadikan landing page sebagai lapisan yang menutupi seluruh layar */
 body.landing-page-active #landingpage-container {
     display: block !important;
     visibility: visible !important;
@@ -91,48 +87,27 @@ body.landing-page-active #landingpage-container {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 99999; /* Z-index sangat tinggi untuk menutupi semua elemen tema */
+    z-index: 99999;
     background-color: var(--lp-body-color);
-    overflow-y: auto; /* Aktifkan scroll hanya untuk landing page */
+    overflow-y: auto;
     overflow-x: hidden;
     font-family: var(--lp-body-font);
     font-size: var(--lp-normal-font-size);
     color: var(--lp-text-color);
+    scroll-behavior: smooth;
 }
-
 body.mobile-menu-active {
-  /* Aturan ini tetap berguna untuk mencegah scroll di iOS saat menu mobile terbuka */
   overflow: hidden !important;
 }
-/* =============================================================== */
 
 /* CLASS CSS YANG DAPAT DIGUNAKAN KEMBALI */
+.lp-section {
+  padding: 6rem 0 4rem;
+}
 .lp-container {
   max-width: 1120px;
   margin-left: var(--lp-mb-1-5);
   margin-right: var(--lp-mb-1-5);
-}
-
-.lp-button-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--lp-accent-color);
-  color: var(--lp-primary-color);
-  padding: .75rem 1.25rem;
-  border-radius: .5rem;
-  font-weight: var(--lp-font-bold);
-  transition: all .3s;
-}
-.lp-button-primary:hover {
-  background-color: #ff9d2d;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px hsla(38, 92%, 58%, 0.2);
-}
-
-.lp-button-sm {
-  padding: .5rem 1rem;
-  font-size: var(--lp-small-font-size);
 }
 
 /* HEADER & NAVIGASI */
@@ -147,7 +122,7 @@ body.mobile-menu-active {
 }
 
 .lp-header-scrolled {
-  background-color: rgba(15, 23, 42, 0.8);
+  background-color: hsla(219, 33%, 16%, 0.8);
   box-shadow: 0 2px 16px hsla(0, 0%, 0%, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -181,6 +156,7 @@ body.mobile-menu-active {
   color: var(--lp-text-color);
   font-weight: var(--lp-font-semibold);
   transition: color .4s;
+  padding: 0.5rem 0;
 }
 
 .lp-nav-link:hover { color: var(--lp-accent-color); }
@@ -192,6 +168,27 @@ body.mobile-menu-active {
   right: 1.25rem;
   color: var(--lp-white-color);
   cursor: pointer;
+}
+
+.lp-button-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--lp-accent-color);
+  color: var(--lp-primary-color) !important;
+  padding: .75rem 1.25rem;
+  border-radius: .5rem;
+  font-weight: var(--lp-font-bold);
+  transition: all .3s;
+}
+.lp-button-primary:hover {
+  background-color: #ff9d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px hsla(38, 92%, 58%, 0.2);
+}
+.lp-button-sm {
+  padding: .5rem 1rem;
+  font-size: var(--lp-small-font-size);
 }
 
 /* Aturan Menu Mobile */
@@ -215,71 +212,71 @@ body.mobile-menu-active {
 /* HERO SECTION */
 .lp-hero {
   position: relative;
-  height: 100vh;
-  min-height: 600px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   background-size: cover;
   background-position: center center;
+  padding-top: var(--lp-header-height);
 }
-
 .lp-hero-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(4, 32, 44, 0.7);
+  background-image: linear-gradient(to top, var(--lp-body-color) 0%, rgba(15, 23, 42, 0.7) 50%);
   z-index: 1;
 }
-
+.lp-hero-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(100vh - var(--lp-header-height));
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
 .lp-hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
+  text-align: center;
+  max-width: 850px;
   margin: 0 auto;
 }
-
 .lp-hero-title {
   font-size: var(--lp-h1-font-size);
   font-weight: var(--lp-font-extrabold);
-  margin-bottom: var(--lp-mb-1);
-  line-height: 1.2;
+  margin-bottom: var(--lp-mb-1-5);
 }
-
 .lp-hero-subtitle {
   font-size: var(--lp-normal-font-size);
   color: var(--lp-text-color);
-  margin-bottom: var(--lp-mb-2-5);
-  line-height: 1.6;
+  margin: 0 auto var(--lp-mb-2-5);
+  max-width: 650px;
+  line-height: 1.7;
 }
-
 .lp-hero-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    flex-wrap: wrap; /* Memungkinkan wrap jika perlu */
+    flex-wrap: wrap;
+    margin-bottom: var(--lp-mb-2);
 }
-
 .lp-button-hero {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    padding: .8rem 1.75rem;
+    padding: 1rem 2rem;
     border-radius: .5rem;
     font-size: var(--lp-normal-font-size);
     font-weight: var(--lp-font-bold);
     transition: all .3s;
     border: 2px solid transparent;
-    flex-grow: 1; /* Biarkan tombol tumbuh */
-    flex-basis: 200px; /* Lebar dasar tombol */
 }
-.lp-button-hero i {
-    font-size: 1.25rem;
-}
+.lp-button-hero i { font-size: 1.25rem; }
 .lp-button-hero.lp-button-primary {
     background-color: var(--lp-accent-color);
-    color: var(--lp-primary-color);
+    color: var(--lp-primary-color) !important;
     box-shadow: 0 4px 20px hsla(38, 92%, 58%, 0.3);
 }
 .lp-button-hero.lp-button-primary:hover {
@@ -298,39 +295,51 @@ body.mobile-menu-active {
     color: var(--lp-accent-color);
     transform: translateY(-3px);
 }
-
-/* PLATFORM LOGO SECTION */
-.lp-platform-section {
-    padding: 4rem 0;
-    background-color: #0c1221;
+.lp-hero-social-proof p {
+  color: var(--lp-text-color-light);
+  font-size: var(--lp-small-font-size);
 }
 
-.lp-platform-container { text-align: center; }
-
+/* PLATFORM DALAM HERO SECTION */
+.lp-platform-container { 
+    text-align: center; 
+    width: 100%;
+    margin-top: auto; /* Mendorong ke bawah */
+    padding-top: 3rem;
+}
 .lp-platform-title {
-    font-size: var(--lp-h3-font-size);
-    font-weight: var(--lp-font-medium);
+    font-size: var(--lp-small-font-size);
+    font-weight: var(--lp-font-semibold);
     color: var(--lp-text-color-light);
-    max-width: 600px;
-    margin: 0 auto var(--lp-mb-2-5);
+    margin-bottom: var(--lp-mb-2);
 }
-
 .lp-platform-logos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2rem;
 }
-
-.lp-platform-logo {
-    height: 35px;
+.lp-platform-logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--lp-text-color-light);
+    font-size: var(--lp-small-font-size);
+    transition: color 0.3s;
+}
+.lp-platform-logo-item:hover {
+    color: var(--lp-white-color);
+}
+.lp-platform-logo-item img {
+    height: 32px;
     width: auto;
-    filter: grayscale(100%) opacity(60%);
+    filter: grayscale(1) opacity(.6);
     transition: filter .3s;
 }
-.lp-platform-logo:hover {
-    filter: grayscale(0%) opacity(100%);
+.lp-platform-logo-item:hover img {
+    filter: grayscale(0) opacity(1);
 }
 
 /* MEDIA QUERIES */
@@ -340,47 +349,27 @@ body.mobile-menu-active {
     margin-right: var(--lp-mb-1);
   }
 }
-
 @media screen and (min-width: 576px) {
     .lp-button-hero {
-        flex-grow: 0; /* Jangan tumbuh lagi di layar besar */
+        flex-grow: 0;
         width: auto;
     }
 }
-
 @media screen and (min-width: 768px) {
-  .lp-hero-subtitle {
-      font-size: 1.125rem;
-  }
-  .lp-platform-logos {
-      gap: 3.5rem;
-  }
-  .lp-platform-logo {
-      height: 40px;
-  }
+  .lp-platform-logos { gap: 3.5rem; }
+  .lp-platform-logo-item img { height: 40px; }
 }
-
 @media screen and (min-width: 1024px) {
-  .lp-nav-toggle,
-  .lp-nav-close {
-    display: none;
-  }
-
-  .lp-nav-menu {
-    all: unset; /* Reset semua style mobile */
-  }
-
+  .lp-nav-toggle, .lp-nav-close { display: none; }
+  .lp-nav-menu { all: unset; }
   .lp-nav-list {
     flex-direction: row;
     align-items: center;
     column-gap: 2.5rem;
   }
-  
-  .lp-nav {
-    height: calc(var(--lp-header-height) + 1.5rem);
-  }
+  .lp-nav { height: calc(var(--lp-header-height) + 1.5rem); }
+  .lp-section { padding: 8rem 0 6rem; }
 }
-
 @media screen and (min-width: 1120px) {
   .lp-container {
     margin-left: auto;
