@@ -11,13 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const mobileMenu = document.getElementById('mobile-menu');
   const closeBtn = document.getElementById('mobile-menu-close-btn');
 
-  // Fungsi untuk membuka menu
   const openMenu = () => {
     if (mobileMenu) mobileMenu.classList.add('open');
     document.body.classList.add('mobile-menu-active');
   };
   
-  // Fungsi untuk menutup menu
   const closeMenu = () => {
     if (mobileMenu) mobileMenu.classList.remove('open');
     document.body.classList.remove('mobile-menu-active');
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Event listener untuk tombol hamburger dan close
+  // Event listeners untuk tombol
   if (hamburgerBtn) {
       hamburgerBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -46,21 +44,19 @@ document.addEventListener('DOMContentLoaded', function () {
       closeBtn.addEventListener('click', closeMenu);
   }
 
-  // Menutup menu saat mengklik di luar area menu (area semi-transparan)
-  // Ini lebih efektif untuk overlay daripada bottom-sheet
-  if (mobileMenu) {
-      document.addEventListener('click', function(event) {
-          if (mobileMenu.classList.contains('open')) {
-              const isClickInsideMenuContent = event.target.closest('.mobile-menu > *');
-              if (!isClickInsideMenuContent && !hamburgerBtn.contains(event.target)) {
-                  closeMenu();
-              }
+  // Menutup menu saat mengklik di luar area menu
+  document.body.addEventListener('click', function(event) {
+      if (mobileMenu && mobileMenu.classList.contains('open')) {
+          const isClickInsideMenu = mobileMenu.contains(event.target);
+          const isClickOnHamburger = hamburgerBtn.contains(event.target);
+          
+          if (!isClickInsideMenu && !isClickOnHamburger) {
+              closeMenu();
           }
-      });
-  }
+      }
+  });
 
-
-  // Smooth scroll + close menu saat link di klik
+  // Smooth scroll & close menu saat link diklik
   document.querySelectorAll('#landingpage-container a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const targetId = link.getAttribute('href');
@@ -71,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         setTimeout(() => {
           document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        }, 300); 
+        }, 300); // Waktu tunda untuk transisi menu
       }
     });
   });
