@@ -34,39 +34,44 @@ document.addEventListener('DOMContentLoaded', function () {
   if (hamburgerBtn) {
       hamburgerBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        openMenu();
+        const isOpen = mobileMenu.classList.contains('open');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
       });
   }
   if (closeBtn) {
       closeBtn.addEventListener('click', closeMenu);
   }
 
-  // Menutup menu saat mengklik di luar area menu
+  // Menutup menu saat mengklik di luar area menu (area semi-transparan)
+  // Ini lebih efektif untuk overlay daripada bottom-sheet
   if (mobileMenu) {
-      mobileMenu.addEventListener('click', function(event) {
-          // Hanya tutup jika yang diklik adalah latar belakang overlay, bukan kontennya
-          if (event.target === mobileMenu) {
-              closeMenu();
+      document.addEventListener('click', function(event) {
+          if (mobileMenu.classList.contains('open')) {
+              const isClickInsideMenuContent = event.target.closest('.mobile-menu > *');
+              if (!isClickInsideMenuContent && !hamburgerBtn.contains(event.target)) {
+                  closeMenu();
+              }
           }
       });
   }
+
 
   // Smooth scroll + close menu saat link di klik
   document.querySelectorAll('#landingpage-container a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       const targetId = link.getAttribute('href');
       
-      // Selalu tutup menu saat link di klik
       closeMenu();
 
-      // Lakukan smooth scroll jika target ada di halaman
       if (targetId && targetId.length > 1 && document.querySelector(targetId)) {
         e.preventDefault();
-        
-        // Timeout kecil untuk memastikan menu mulai menutup sebelum scroll
         setTimeout(() => {
           document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        }, 300); // Waktu disesuaikan dengan transisi menu
+        }, 300); 
       }
     });
   });
