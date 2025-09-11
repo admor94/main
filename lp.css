@@ -27,6 +27,11 @@
 body.landing-page-active {
   background: var(--ek-bg) !important;
   overflow-x: hidden !important;
+  font-family: var(--font-body);
+  color: var(--ek-text-primary);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
 body.landing-page-active > *:not(#landingpage-container):not(link):not(script) {
@@ -38,16 +43,13 @@ body.mobile-menu-active {
 }
 
 #landingpage-container {
-  padding-top: 72px; /* Disesuaikan dengan tinggi navbar */
+  padding-top: 64px; /* Disesuaikan dengan tinggi navbar */
   visibility: hidden; 
-  font-family: var(--font-body);
-  color: var(--ek-text-primary);
-  line-height: 1.6;
 }
 
 .container {
   max-width: 1140px;
-  width: 92%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -83,7 +85,7 @@ body.mobile-menu-active {
   transition: background-color 0.3s ease, border-color 0.3s ease;
   background-color: transparent;
   border-bottom: 1px solid transparent;
-  height: 72px;
+  height: 64px; /* [REVISI 1] Tinggi navbar lebih ramping */
   display: flex;
   align-items: center;
 }
@@ -102,7 +104,7 @@ body.mobile-menu-active {
 }
 
 #landing-navbar .navbar-brand img {
-  height: 32px;
+  height: 30px; /* [REVISI] Logo sedikit lebih kecil */
   display: block;
 }
 
@@ -128,10 +130,10 @@ body.mobile-menu-active {
 }
 
 #landing-navbar .nav-link {
-  font-family: var(--font-body);
+  font-family: var(--font-body); /* [REVISI] Font disamakan */
   color: var(--ek-text-secondary);
   text-decoration: none;
-  font-size: 15px; /* 0.9375rem */
+  font-size: 15px; /* [REVISI 2] 0.9375rem */
   font-weight: 600;
   transition: color 0.3s ease;
 }
@@ -150,10 +152,10 @@ body.mobile-menu-active {
   background-color: transparent;
   color: var(--ek-text-primary);
   border: 1px solid var(--ek-border) !important;
-  font-size: 14px; /* 0.875rem */
+  font-size: 14px; /* [REVISI 2] 0.875rem */
   font-weight: 600;
   padding: 0 20px;
-  height: 38px;
+  height: 36px; /* [REVISI 1] Tombol lebih kecil */
 }
 #landing-navbar .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -165,9 +167,9 @@ body.mobile-menu-active {
   background-color: var(--ek-accent);
   color: var(--ek-bg);
   font-weight: 700;
-  font-size: 14px; /* 0.875rem */
+  font-size: 14px; /* [REVISI 2] 0.875rem */
   padding: 0 20px;
-  height: 38px;
+  height: 36px; /* [REVISI 1] Tombol lebih kecil */
 }
 #landing-navbar .btn-cta:hover {
   background-color: var(--ek-accent-hover);
@@ -180,7 +182,7 @@ body.mobile-menu-active {
   }
 }
 
-/* ================= MOBILE MENU (FULL-SCREEN OVERLAY) ================= */
+/* ================= MOBILE MENU (REVISI TOTAL) ================= */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -190,7 +192,7 @@ body.mobile-menu-active {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1003; /* Di atas segalanya */
+  z-index: 1003;
 }
 .hamburger span {
   width: 24px;
@@ -202,93 +204,95 @@ body.mobile-menu-active {
 
 .mobile-menu {
   position: fixed;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  height: 100%;
+  bottom: -100%; 
+  left: 0;
+  right: 0;
   background: var(--ek-bg-menu);
-  padding: 20px;
-  transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-top: 1px solid var(--ek-border);
+  padding: 16px;
+  transition: bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 1002;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .mobile-menu.open {
-  right: 0;
+  bottom: 0;
 }
 .mobile-menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 }
-.mobile-menu-header .navbar-brand img {
-    height: 32px;
+.mobile-menu-title {
+  font-family: var(--font-subtitle);
+  font-size: 14px; /* 0.875rem */
+  font-weight: 600;
+  color: var(--ek-text-secondary);
 }
 .close-btn {
   background: transparent;
   border: none;
-  color: var(--ek-text-primary);
-  font-size: 28px; /* 1.75rem */
+  color: var(--ek-text-secondary);
+  font-size: 20px; /* 1.25rem */
   cursor: pointer;
   padding: 8px;
 }
-.mobile-menu ul { 
+.mobile-menu-links { 
   list-style: none; 
   padding: 0; 
   margin: 0;
   text-align: left;
 }
-.mobile-menu ul li a { 
+.mobile-menu-links li a { 
   display: block; 
-  padding: 14px 0; 
-  font-size: 20px; /* 1.25rem */
+  padding: 10px 0; 
+  font-size: 16px; /* 1rem */
   font-weight: 600;
   text-align: left;
-  color: var(--ek-text-secondary);
+  color: var(--ek-text-primary);
 }
-.mobile-menu ul li a:hover {
-  color: var(--ek-accent);
+.mobile-menu-links li a:hover {
+    color: var(--ek-accent);
 }
-
+.mobile-menu-divider {
+  height: 1px;
+  background-color: var(--ek-border);
+  margin: 16px 0;
+}
 .mobile-menu-actions { 
-  margin-top: auto;
-  padding-top: 24px;
-  border-top: 1px solid var(--ek-border);
   display: flex; 
   flex-direction: column; 
-  gap: 16px; 
+  gap: 12px; 
   align-items: center;
 }
 .mobile-menu-actions .btn { 
   justify-content: center; 
-  padding-top: 12px;
-  padding-bottom: 12px;
-  font-size: 16px; /* 1rem */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px; /* 0.9375rem */
   width: 100%;
-  max-width: 320px;
 }
 
 /* ============================================= */
 /* HERO SECTION                  */
 /* ============================================= */
 .hero-section {
-  margin-top: -72px;
-  padding: 160px 0 120px 0;
+  margin-top: -64px;
+  padding: 150px 0 120px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  min-height: 75vh;
+  min-height: 80vh;
 }
 
 .hero-background {
   position: absolute;
   inset: 0;
   background: url('https://image.web.id/images/clipboard-image-1750755434.png') no-repeat center/cover;
-  opacity: 0.3; /* Sedikit lebih terang */
+  opacity: 0.3;
   z-index: -1;
 }
 .hero-section::after {
@@ -306,12 +310,12 @@ body.mobile-menu-active {
 
 .hero-title {
   font-family: var(--font-title);
-  font-size: 49px; /* 3.1rem */
+  font-size: 48px; /* [REVISI 2] 3rem */
   font-weight: 800;
   line-height: 1.3;
   margin: 0 auto 24px;
   color: var(--ek-text-primary);
-  max-width: none;
+  max-width: 800px;
 }
 
 .highlight-text-accent {
@@ -321,29 +325,29 @@ body.mobile-menu-active {
 .hero-subtitle,
 .hero-description {
   font-family: var(--font-body);
-  font-size: 18px; /* 1.125rem */
+  font-size: 16px; /* [REVISI 2] 1rem */
   font-weight: 500;
   color: var(--ek-text-secondary);
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto 12px;
   line-height: 1.7;
 }
 
 .hero-description {
-  margin-bottom: 32px;
+  margin-bottom: 24px; /* [REVISI 3] Jarak ke tombol lebih dekat */
 }
 
 .hero-cta-group {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 16px;
+  gap: 12px; /* [REVISI] Jarak antar tombol lebih rapat */
   flex-wrap: wrap;
 }
 
 .btn-cta-hero, .btn-secondary-hero {
-  padding: 0 24px;
-  height: 44px;
+  padding: 0 22px; /* [REVISI] Ukuran tombol disesuaikan */
+  height: 42px; /* [REVISI] Ukuran tombol disesuaikan */
   font-size: 15px; /* 0.9375rem */
   font-weight: 600;
   font-family: var(--font-body);
@@ -355,12 +359,12 @@ body.mobile-menu-active {
 
 .btn-secondary-hero {
   background-color: rgba(42, 42, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--ek-text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: var(--ek-text-primary) !important; /* [REVISI] Paksa warna teks */
 }
 .btn-secondary-hero:hover {
   background-color: rgba(55, 55, 55, 0.8);
-  border-color: var(--ek-text-primary);
+  border-color: var(--ek-text-primary) !important;
 }
 
 .hero-sub-cta {
@@ -374,22 +378,21 @@ body.mobile-menu-active {
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-  .hero-title { font-size: 34px; /* 2.1rem */ }
-  .hero-subtitle, .hero-description { font-size: 16px; /* 1rem */ }
+  #landingpage-container { padding-top: 64px; }
+  .hero-section { padding: 120px 0 80px 0; }
+  .hero-title { font-size: 32px; /* 2rem */ }
+  .hero-subtitle, .hero-description { font-size: 15px; /* 0.9375rem */ }
   
   .hero-cta-group {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+    flex-direction: row; /* [REVISI 5] Kembali ke horizontal */
+    justify-content: center;
   }
   .btn-cta-hero, .btn-secondary-hero {
-    width: 100%;
-    max-width: 300px;
+    width: auto; /* [REVISI 5] Lebar otomatis */
+    max-width: none;
     font-size: 14px; /* 0.875rem */
-    height: 44px;
-    padding: 0 22px;
+    height: 42px;
+    padding: 0 20px;
   }
-  
-  .hero-section { padding: 140px 0 80px 0; }
 }
 
