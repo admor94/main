@@ -9,8 +9,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // ===== LANGKAH KRUSIAL: MENGAKTIFKAN MODE LANDING PAGE =====
-  // Menambahkan class ke <body> untuk mengisolasi style landing page
-  // dari tema utama Blogger.
+  // Menambahkan class ke <body>. Class ini akan memicu aturan
+  // di lp.css untuk menyembunyikan elemen tema utama Blogger.
   document.body.classList.add('landing-page-active');
 
   /*==================== MENU MOBILE ====================*/
@@ -48,7 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* Sembunyikan menu saat klik di luar area menu */
   document.addEventListener('click', (event) => {
-      if (navMenu.classList.contains('show-menu') && !navMenu.contains(event.target) && event.target !== navToggle) {
+      const isClickInsideMenu = navMenu.contains(event.target);
+      const isClickOnToggle = navToggle.contains(event.target);
+      
+      if (navMenu.classList.contains('show-menu') && !isClickInsideMenu && !isClickOnToggle) {
           navMenu.classList.remove('show-menu');
           document.body.classList.remove('mobile-menu-active');
       }
@@ -58,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
   /*==================== GANTI BACKGROUND HEADER SAAT SCROLL ====================*/
   function scrollHeader() {
     const header = document.getElementById('lp-header');
+    if( !header ) return;
     if (this.scrollY >= 50) {
       header.classList.add('lp-header-scrolled');
     } else {
@@ -76,9 +80,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                // Memberi sedikit ruang di atas section saat scroll
+                const headerOffset = 80; 
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+              
+                window.scrollTo({
+                     top: offsetPosition,
+                     behavior: "smooth"
                 });
             }
         });
